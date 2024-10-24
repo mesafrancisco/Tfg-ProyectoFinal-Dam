@@ -8,11 +8,11 @@
 		<version>3.3.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.app.incidencia</groupId>
-	<artifactId>com.app.incidencia</artifactId>
+	<groupId>com.app</groupId>
+	<artifactId>gestorincidencias</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>com.app.incidencia</name>
-	<description>Crud-spring-incidencia</description>
+	<name>gestorincidencias</name>
+	<description>Aplicación para gestionar incidencias</description>
 	<url/>
 	<licenses>
 		<license/>

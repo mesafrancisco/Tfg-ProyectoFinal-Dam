@@ -1,10 +1,10 @@
-package com.app.incidencia.com.app.incidencia;
+package com.app.gestorincidencias;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class GestorincidenciasApplicationTests {
 
 	@Test
 	void contextLoads() {

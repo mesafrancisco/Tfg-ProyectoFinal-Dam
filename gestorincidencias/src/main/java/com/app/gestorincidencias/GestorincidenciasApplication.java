@@ -1,13 +1,13 @@
-package com.app.incidencia.com.app.incidencia;
+package com.app.gestorincidencias;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class GestorincidenciasApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(GestorincidenciasApplication.class, args);
 	}
 
 }
