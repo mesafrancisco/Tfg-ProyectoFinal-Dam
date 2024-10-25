@@ -28,8 +28,4 @@ public class GestorincidenciasApplication implements CommandLineRunner {
 		Persona persona3 = new Persona("Miso","Nicolic","Miso@hotmail.com");
 		repositorio.save(persona3);
 	}
-
-
-
-
 }

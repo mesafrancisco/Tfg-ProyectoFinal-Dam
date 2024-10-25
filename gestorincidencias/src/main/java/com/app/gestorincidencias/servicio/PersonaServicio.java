@@ -5,5 +5,6 @@ import com.app.gestorincidencias.entidad.Persona;
 import java.util.List;
 
 public interface PersonaServicio {
-    public List<Persona> listarTodasLasPersona();
+    public List<Persona> listarTodasLasPersonas();
 }
+

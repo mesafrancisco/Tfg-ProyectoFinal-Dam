@@ -14,7 +14,7 @@ public class PersonaServicioImpl implements PersonaServicio{
     private PersonaRepositorio repositorio;
 
     @Override // Esto se sobreescribe del interface
-    public List<Persona> listarTodasLasPersona() {
+    public List<Persona> listarTodasLasPersonas() {
         return repositorio.findAll();
     }
 
