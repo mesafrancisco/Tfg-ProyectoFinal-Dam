@@ -6,25 +6,45 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/style.css">
-
 </head>
 <body>
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <a  class="navbar-brand" href="#">Control de personas</a>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a th:href="@{/personas/nuevo}" class="nav-link">Registro personas</a>
-        </li>
-        <li class="nav-item">
-          <a th:href="@{/personas}" class="nav-link">Control personas</a>
-        </li>
-      </ul>
+  <!-- Header con Bootstrap -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+      <!-- Logo de la aplicación -->
+      <a class="navbar-brand" href="#">
+          <img src="/images/Logo.webp" width="100" height="100" alt="Logo">
+          Gestión de Incidencias
+      </a>
+      <!-- Vistas de la aplicación -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">Inicio</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link"  th:href="@{/personas}">Incidencias</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" th:href="@{/personas/nuevo}">Nueva incidencia</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">Reportes</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">Usuarios</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">Configuración</a>
+              </li>
+          </ul>
+      </div>
   </div>
 </nav>
+
 <div class="container">
   <div class="row">
-    <h1>Lista de Personas</h1>
+    <h1>Incidencias en activo:</h1>
   </div>
   <div class="row">
     <div class="col-lg-3">
