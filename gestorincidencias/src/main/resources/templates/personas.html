@@ -63,7 +63,7 @@
     <tbody>
     <tr th:each="persona : ${personas}">
       <td th:text="${persona.nombre}">Nombre</td>
-      <td th:text="${persona.apellido}">Apellido</td>
+      <td th:text="${persona.apellido}">Apellidos</td>
       <td th:text="${persona.email}">Email</td>
       <td  class="text-center">
         <a th:href="@{/personas/editar/{id}(id=${persona.id})}" class="btn btn-info">Editar</a>
