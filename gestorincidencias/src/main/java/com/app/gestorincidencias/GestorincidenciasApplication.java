@@ -19,13 +19,6 @@ public class GestorincidenciasApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Persona persona1 = new Persona("Francisco", "Mesa", "francisco@hotmail.com");
-        repositorio.save(persona1);
-
-        Persona persona2 = new Persona("Maria", "Morte", "Maria@hotmail.com");
-        repositorio.save(persona2);
-
-        Persona persona3 = new Persona("Miso", "Nicolic", "Miso@hotmail.com");
-        repositorio.save(persona3);
+        System.out.println("La aplicación ha iniciado correctamente.");
     }
 }
