@@ -19,7 +19,7 @@ public class PersonaControlador {
     @GetMapping({ "/personas" })
     public String listarPersonas(Model modelo) {
         modelo.addAttribute("personas", servicio.listarTodasLasPersonas());
-        return "personas"; // nombre de la plantilla Thymeleaf
+        return "personas"; // nombre de la plantilla Thymeleaff
     }
 
     @GetMapping("/personas/nuevo") // nombre de la url a la que vamos a acceder
