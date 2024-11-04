@@ -1,7 +1,6 @@
 package com.app.gestorincidencias;
 
-import com.app.gestorincidencias.entidad.Persona;
-import com.app.gestorincidencias.repositorio.PersonaRepositorio;
+import com.app.gestorincidencias.repositorio.IncidenciaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,7 +17,7 @@ public class GestorincidenciasApplication implements CommandLineRunner {
         SpringApplication.run(GestorincidenciasApplication.class, args);
     }
     @Autowired
-    private PersonaRepositorio repositorio;
+    private IncidenciaRepositorio repositorio;
 
     @Override
     public void run(String... args) throws Exception {
