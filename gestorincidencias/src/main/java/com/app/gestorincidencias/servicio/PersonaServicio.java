@@ -5,7 +5,7 @@ import com.app.gestorincidencias.entidad.Persona;
 import java.util.List;
 
 public interface PersonaServicio {
-    public List<Persona> listarTodasLasPersonas();
+    public List<Persona> listarTodasLasPersonas(String palabraClave);
 
     public Persona guardarPersona(Persona persona);
 
@@ -14,5 +14,6 @@ public interface PersonaServicio {
     public Persona actualizarPersona(Persona persona);
 
     public void eliminarPersona(Long id);
+
 }
 

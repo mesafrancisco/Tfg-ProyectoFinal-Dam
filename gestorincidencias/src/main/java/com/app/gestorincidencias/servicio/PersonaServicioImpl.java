@@ -14,7 +14,10 @@ public class PersonaServicioImpl implements PersonaServicio {
     private PersonaRepositorio repositorio;
 
     @Override // Esto se sobreescribe del interface
-    public List<Persona> listarTodasLasPersonas() {
+    public List<Persona> listarTodasLasPersonas(String palabraClave) {
+        if(palabraClave != null){
+            return repositorio.findAll(palabraClave);
+        }
         return repositorio.findAll();
     }
 
@@ -37,6 +40,7 @@ public class PersonaServicioImpl implements PersonaServicio {
     public void eliminarPersona(Long id) {
         repositorio.deleteById(id);
     }
+
 
 
 }

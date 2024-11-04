@@ -17,7 +17,6 @@ public class GestorincidenciasApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(GestorincidenciasApplication.class, args);
     }
-
     @Autowired
     private PersonaRepositorio repositorio;
 
