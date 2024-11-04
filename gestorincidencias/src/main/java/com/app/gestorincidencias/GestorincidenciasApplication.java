@@ -7,8 +7,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.logging.Logger;
+
 @SpringBootApplication
 public class GestorincidenciasApplication implements CommandLineRunner {
+    //Para introducir logs.
+    private final static Logger log = Logger.getLogger(GestorincidenciasApplication.class.getName());
 
     public static void main(String[] args) {
         SpringApplication.run(GestorincidenciasApplication.class, args);
