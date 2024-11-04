@@ -3,6 +3,7 @@ package com.app.gestorincidencias.controlador;
 import com.app.gestorincidencias.entidad.Persona;
 import com.app.gestorincidencias.servicio.PersonaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +15,9 @@ public class PersonaControlador {
     private PersonaServicio servicio;
 
     @GetMapping({ "/personas","/" })
-    public String listarPersonas(Model modelo) {
-        String palabraClave = "Martinez";
+    public String listarPersonas(Model modelo, @Param("palabraClave")String palabraClave) {
         modelo.addAttribute("personas", servicio.listarTodasLasPersonas(palabraClave));
+        modelo.addAttribute("palabraClave",palabraClave);
         return "personas"; // nombre de la plantilla Thymeleaf
     }
 
