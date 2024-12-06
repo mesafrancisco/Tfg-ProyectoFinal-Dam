@@ -15,26 +15,23 @@ public class RegistroUsuarioControlador {
     private UsuarioServicio usuarioServicio;
 
     public RegistroUsuarioControlador(UsuarioServicio usuarioServicio) {
+        super();
         this.usuarioServicio = usuarioServicio;
     }
 
     @ModelAttribute("usuario")
-    public UsuarioRegistroDTO retornarNuevoUsuarioRegistroDTO(){
+    public UsuarioRegistroDTO retornarNuevoUsuarioRegistroDTO() {
         return new UsuarioRegistroDTO();
     }
 
     @GetMapping
-    public String mostrarFormularioDeRegistro(){
+    public String mostrarFormularioDeRegistro() {
         return "registro";
     }
 
     @PostMapping
-    public String registrarCuentaDeUsuario(@ModelAttribute("usuario")UsuarioRegistroDTO registro){
-        usuarioServicio.guardar(registro);
-        return "redirect:/registro?exito";
+    public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO) {
+        usuarioServicio.guardar(registroDTO);
+        return "redirect:/incidencias";
     }
-
-
-
-
 }
