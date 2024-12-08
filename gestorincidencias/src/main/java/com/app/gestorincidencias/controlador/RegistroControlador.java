@@ -22,5 +22,4 @@ public class RegistroControlador {
         modelo.addAttribute("usuarios", servicio.listarUsuarios());
         return "index";
     }
-    
 }
