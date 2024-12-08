@@ -5,21 +5,18 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "rol")
 public class Rol {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
 
-    public Rol(String nombre) {
-        this.nombre = nombre;
+    public Long getId() {
+        return id;
     }
 
-    public Rol() {
-    }
-
-    public Rol(Long id, String nombre) {
+    public void setId(Long id) {
         this.id = id;
-        this.nombre = nombre;
     }
 
     public String getNombre() {
@@ -30,11 +27,20 @@ public class Rol {
         this.nombre = nombre;
     }
 
-    public Long getId() {
-        return id;
+    public Rol(Long id, String nombre) {
+        super();
+        this.id = id;
+        this.nombre = nombre;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Rol() {
+
     }
+
+    public Rol(String nombre) {
+        super();
+        this.nombre = nombre;
+    }
+
+
 }

@@ -44,7 +44,7 @@ public class SecurityConfiguration {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin(form -> form
-                        .loginPage("/incidencias")   // Configuración de la página de login
+                        .loginPage("/login")   // Configuración de la página de login
                         .permitAll()           // Permitir acceso a todos
                 )
                 .logout(logout -> logout

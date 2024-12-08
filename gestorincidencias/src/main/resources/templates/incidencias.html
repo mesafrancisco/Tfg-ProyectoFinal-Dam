@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <title>Lista de incidencias</title>
@@ -38,6 +38,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Configuración</a>
                 </li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión</a></li>
             </ul>
         </div>
     </div>

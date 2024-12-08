@@ -2,6 +2,8 @@ package com.app.gestorincidencias.controlador;
 
 import com.app.gestorincidencias.dto.UsuarioRegistroDTO;
 import com.app.gestorincidencias.servicio.UsuarioServicio;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,6 +34,12 @@ public class RegistroUsuarioControlador {
     @PostMapping
     public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO) {
         usuarioServicio.guardar(registroDTO);
-        return "redirect:/incidencias";
+        return "redirect:/registro?exito";
+    }
+    @GetMapping("/verificar")
+    public String verificarAutenticacion() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("Usuario autenticado: " + auth.getName());
+        return "verificar";
     }
 }

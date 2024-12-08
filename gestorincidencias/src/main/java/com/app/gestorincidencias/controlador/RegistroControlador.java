@@ -17,8 +17,7 @@ public class RegistroControlador {
     public String iniciarSesion() {
         return "login";
     }
-
-    @GetMapping("/")
+    @GetMapping("/index")
     public String verPaginaDeInicio(Model modelo) {
         modelo.addAttribute("usuarios", servicio.listarUsuarios());
         return "index";
