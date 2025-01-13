@@ -70,7 +70,6 @@
             <th>Título</th>
             <th>Descripción</th>
             <th>Estado</th>
-            <th>Fecha de Creacion</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -79,7 +78,6 @@
             <td th:text="${incidencia.titulo}">Título</td>
             <td th:text="${incidencia.descripcion}">Descripción</td>
             <td th:text="${incidencia.estado}">Estado</td>
-            <td th:text="${incidencia.fechaCreacion}">Fecha creacion</td>
             <td class="text-center">
                 <a th:href="@{/incidencias/editar/{id}(id=${incidencia.id})}" class="btn btn-info">Editar</a>
                 <a th:href="@{/incidencias/{id}(id=${incidencia.id})}" class="btn btn-danger">Eliminar</a>
