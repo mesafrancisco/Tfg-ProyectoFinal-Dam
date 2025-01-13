@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <!-- Logo de la aplicación -->
+    <a class="navbar-brand" href="#">
+      <img src="/images/Logo.webp" width="100" height="100" alt="Logo">
+      Gestión de Incidencias
+    </a>
+    <!-- Vistas de la aplicación -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/personas}">Incidencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/personas/nuevo}">Nueva incidencia</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Reportes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Configuración</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+</body>
+</html>
