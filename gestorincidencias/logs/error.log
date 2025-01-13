@@ -2065,3 +2065,37 @@ java.lang.IllegalStateException: Ambiguous handler methods mapped for '/': {publ
 2024-12-08T17:27:55.596+01:00  INFO 28080 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-12-08T17:27:55.600+01:00  INFO 28080 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-12-08T17:27:55.609+01:00  INFO 28080 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-13T21:39:32.171+01:00  INFO 17188 --- [restartedMain] c.a.g.GestorincidenciasApplication       : Starting GestorincidenciasApplication using Java 21.0.4 with PID 17188 (C:\Users\mesaf\Documents\DAM-Programacion\TFG\gestorincidencias\target\classes started by mesaf in C:\Users\mesaf\Documents\DAM-Programacion\TFG\gestorincidencias)
+2025-01-13T21:39:32.173+01:00  INFO 17188 --- [restartedMain] c.a.g.GestorincidenciasApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-13T21:39:32.233+01:00  INFO 17188 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-01-13T21:39:32.233+01:00  INFO 17188 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-01-13T21:39:33.511+01:00  INFO 17188 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-13T21:39:33.603+01:00  INFO 17188 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 78 ms. Found 2 JPA repository interfaces.
+2025-01-13T21:39:34.574+01:00  INFO 17188 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-01-13T21:39:34.596+01:00  INFO 17188 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-13T21:39:34.596+01:00  INFO 17188 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2025-01-13T21:39:34.674+01:00  INFO 17188 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-13T21:39:34.674+01:00  INFO 17188 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2440 ms
+2025-01-13T21:39:35.079+01:00  INFO 17188 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-13T21:39:35.163+01:00  INFO 17188 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-01-13T21:39:35.237+01:00  INFO 17188 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-13T21:39:35.665+01:00  INFO 17188 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-13T21:39:35.698+01:00  INFO 17188 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-13T21:39:36.272+01:00  INFO 17188 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@214191f8
+2025-01-13T21:39:36.275+01:00  INFO 17188 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-13T21:39:36.327+01:00  WARN 17188 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-01-13T21:39:36.329+01:00  WARN 17188 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-01-13T21:39:37.455+01:00  INFO 17188 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-13T21:39:37.593+01:00  INFO 17188 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-13T21:39:37.975+01:00  INFO 17188 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-13T21:39:39.521+01:00  WARN 17188 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-13T21:39:39.586+01:00  INFO 17188 --- [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-01-13T21:39:39.588+01:00  WARN 17188 --- [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-13T21:39:39.736+01:00  INFO 17188 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-01-13T21:39:40.586+01:00  INFO 17188 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-01-13T21:39:40.635+01:00  INFO 17188 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-01-13T21:39:40.664+01:00  INFO 17188 --- [restartedMain] c.a.g.GestorincidenciasApplication       : Started GestorincidenciasApplication in 9.289 seconds (process running for 10.256)
+2025-01-13T21:39:45.342+01:00  INFO 17188 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-13T21:39:45.342+01:00  INFO 17188 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-13T21:39:45.343+01:00  INFO 17188 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-13T21:54:11.105+01:00  WARN 17188 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m8s505ms942µs400ns).
