@@ -13,15 +13,19 @@ body {
 }
 
 /* Navbar styling */
-.navbar-dark {
+.navbar {
     background-color: #343a40;
-    border-bottom: 3px solid #007bff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.navbar-brand img {
-    margin-right: 10px;
+.navbar h1 {
+    color: #fff;
 }
 
+/* Navbar link styling */
 .navbar-nav .nav-item .nav-link {
     font-size: 1rem;
     color: #fff;
@@ -33,68 +37,56 @@ body {
     border-radius: 4px;
 }
 
-/* Container and content styling */
-.container {
-    max-width: 1200px;
-    margin-top: 70px;
+/* Sidebar styling */
+.sidebar {
+    position: fixed;
+    top: 75px;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #343a40;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #555;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+}
+
+/* Estilo para el botón de abrir/cerrar */
+.sidebar-toggle {
+  position: absolute;
+  right: 0px;
+  font-size: 30px;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* Content styling */
+.content {
+    margin-left: 250px;
     padding: 20px;
+    transition: margin-left 0.3s;
 }
 
-/* Heading styles */
-h1 {
+.content h2 {
     font-size: 2rem;
-    margin-bottom: 30px;
     color: #343a40;
-}
-
-/* Form and input field styling */
-.form-inline {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    font-size: 1.1rem;
-    color: #343a40;
-}
-
-.form-group input {
-    font-size: 1rem;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ced4da;
-    width: 200px;
-}
-
-.form-group input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(23, 162, 184, 0.5);
-}
-
-.btn-primary, .btn-secondary {
-    padding: 10px 15px;
-    font-size: 1rem;
-    border-radius: 4px;
-    margin-left: 10px;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
 }
 
 /* Table styling */
@@ -154,7 +146,7 @@ h1 {
     border-color: #bd2130;
 }
 
-/* Footer and responsive styling */
+/* Footer styling */
 footer {
     text-align: center;
     margin-top: 40px;
@@ -170,33 +162,4 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
-}
-
-/* Media Queries for responsiveness */
-@media (max-width: 767px) {
-    .container {
-        padding: 0 15px;
-    }
-
-    .navbar-nav {
-        text-align: center;
-    }
-
-    .navbar-nav .nav-item {
-        margin-bottom: 10px;
-    }
-
-    .form-inline {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .form-group input {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .table td, .table th {
-        font-size: 0.9rem;
-    }
 }
