@@ -8,7 +8,8 @@
 /* Body styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #81a8d0;
+    background: rgb(155,149,255);
+    background: linear-gradient(90deg, rgba(155,149,255,1) 0%, rgba(0,212,255,1) 100%);
     color: #343a40;
 }
 
