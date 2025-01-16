@@ -2,6 +2,7 @@ package com.app.gestorincidencias.entidad;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,8 +16,8 @@ public class Incidencia {
     private String titulo;
     private String descripcion;
     private String estado; // Ejemplo: "abierta", "en progreso", "cerrada"
-    private LocalDateTime fechaCreacion;
-    private LocalDateTime fechaResolucion;
+    private LocalDate fechaCreacion;
+    private LocalDate fechaResolucion;
     private String asignadoA; // Puede ser un ID de usuario o nombre
     private String prioridad; // Ejemplo: "alta", "media", "baja"
 
@@ -53,19 +54,19 @@ public class Incidencia {
         this.estado = estado;
     }
 
-    public LocalDateTime getFechaCreacion() {
+    public LocalDate getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+    public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public LocalDateTime getFechaResolucion() {
+    public LocalDate getFechaResolucion() {
         return fechaResolucion;
     }
 
-    public void setFechaResolucion(LocalDateTime fechaResolucion) {
+    public void setFechaResolucion(LocalDate fechaResolucion) {
         this.fechaResolucion = fechaResolucion;
     }
 
@@ -84,4 +85,21 @@ public class Incidencia {
     public void setPrioridad(String prioridad) {
         this.prioridad = prioridad;
     }
+
+
+    //    public LocalDateTime getFechaCreacion() { /*/ COMENTADO POR CAMBIAR LOCALDATETIME A LOCALDATE Y CREAR GETTES Y SETTERS NUEVOS
+//        return fechaCreacion;
+//    }
+//
+//    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+//        this.fechaCreacion = fechaCreacion;
+//    }
+//
+//    public LocalDateTime getFechaResolucion() {
+//        return fechaResolucion;
+//    }
+//
+//    public void setFechaResolucion(LocalDateTime fechaResolucion) {
+//        this.fechaResolucion = fechaResolucion;
+//    }
 }
