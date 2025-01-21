@@ -24,3 +24,4 @@ public class GestorincidenciasApplication implements CommandLineRunner {
         System.out.println("La aplicación ha iniciado correctamente.");
     }
 }
+ 
