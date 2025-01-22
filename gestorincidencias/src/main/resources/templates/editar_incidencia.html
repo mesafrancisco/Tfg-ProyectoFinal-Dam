@@ -58,9 +58,13 @@
                         <textarea name="descripcion" th:field="*{descripcion}" class="form-control" placeholder="Descripción de la incidencia" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Descripción: </label>
-                        <input type="date" name="fechaCreacion" th:field="*{fechaCreacion}" class="form-control" placeholder="Fecha de la incidencia" required>                    </div>
+                        <label>Fecha de Creación: </label>
+                        <input type="datetime-local" name="fechaCreacion" th:field="*{fechaCreacion}" class="form-control" placeholder="Fecha de la incidencia" >                    </div>
                     <br>
+                    <div class="form-group">
+                        <label>Fecha Resolución: </label>
+                        <input type="datetime-local" name="fechaResolucion" th:field="*{fechaResolucion}" class="form-control" placeholder="Ponga la fecha" >
+                    </div>
                     <div class="form-group">
                         <label>Estado: </label>
                         <select name="estado" th:field="*{estado}" class="form-control" required>

@@ -16,8 +16,8 @@ public class Incidencia {
     private String titulo;
     private String descripcion;
     private String estado; // Ejemplo: "abierta", "en progreso", "cerrada"
-    private LocalDate fechaCreacion;
-    private LocalDate fechaResolucion;
+    private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaResolucion;
     private String asignadoA; // Puede ser un ID de usuario o nombre
     private String prioridad; // Ejemplo: "alta", "media", "baja"
 
@@ -54,19 +54,19 @@ public class Incidencia {
         this.estado = estado;
     }
 
-    public LocalDate getFechaCreacion() {
+    public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public LocalDate getFechaResolucion() {
+    public LocalDateTime getFechaResolucion() {
         return fechaResolucion;
     }
 
-    public void setFechaResolucion(LocalDate fechaResolucion) {
+    public void setFechaResolucion(LocalDateTime fechaResolucion) {
         this.fechaResolucion = fechaResolucion;
     }
 

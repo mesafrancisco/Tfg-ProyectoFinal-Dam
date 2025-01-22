@@ -12,10 +12,10 @@
 <body>
 <div th:replace="~{fragments/menu :: menu}"></div>
 <!-- Contenedor principal con fondo blanco -->
-<div class="container my-4">
+<div class="">
     <div class="row justify-content-center">
         <!-- Contenedor para filtro y listado, fondo blanco -->
-        <div class="col-12">
+        <div class="">
             <div class=""  style="background-color: white; padding: 5px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
                 <!-- Filtro -->
                 <h3 class="mb-4">Filtro de Incidencias</h3>
@@ -61,6 +61,7 @@
                     <th>Descripción</th>
                     <th>Estado</th>
                     <th>Fecha</th>
+                    <th>Fecha Resolución</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -69,7 +70,8 @@
                     <td th:text="${incidencia.titulo}">Título</td>
                     <td th:text="${incidencia.descripcion}">Descripción</td>
                     <td th:text="${incidencia.estado}">Estado
-                    <td th:text="${incidencia.fechaCreacion}">Fecha</td>
+                    <td th:text="${incidencia.fechaCreacion}">Creación</td>
+                    <td th:text="${incidencia.fechaResolucion}">Resolución</td>
                     <td class="text-center">
                         <a th:href="@{/incidencias/editar/{id}(id=${incidencia.id})}" class="btn btn-info">Editar</a>
                         <a th:href="@{/incidencias/{id}(id=${incidencia.id})}" class="btn btn-danger">Eliminar</a>
