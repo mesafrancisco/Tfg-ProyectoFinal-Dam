@@ -25,17 +25,16 @@
                         <input type="text" name="titulo" id="titulo" class="form-control bg-transparent" placeholder="Título" th:value="${titulo}">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="estado">Estado:</label>
-                        <select name="estado" id="estado" class="form-control bg-transparent" th:value="${estado}">
-                            <option value="">Seleccione Estado</option>
-                            <option value="abierta">Registrada</option>
-                            <option value="en progreso">En_Curso</option>
-                            <option value="cerrada">Cerrada</option>
-                        </select>
-                    </div>
-                    <div class="form-group mb-3">
                         <label for="descripcion">Descripción:</label>
                         <input type="text" name="descripcion" id="descripcion" class="form-control bg-transparent" placeholder="Descripción" th:value="${descripcion}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="estado">Estado:</label>
+                        <select placeholder="Seleccione el estado" name="estado" id="estado" class="form-control bg-transparent" th:value="${estado}">
+                            <option value="Registrada">Registrada</option>
+                            <option value="En_Curso">En_Curso</option>
+                            <option value="Cerrada">Cerrada</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="fecha">Fecha:</label>

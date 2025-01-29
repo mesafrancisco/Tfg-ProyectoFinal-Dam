@@ -55,8 +55,13 @@
                     </div>
                     <br>
                     <div class="form-group">
+                        <label>Descripción:: </label>
+                        <input type="text" name="descripcion" th:field="*{descripcion}" class="form-control" placeholder="Ponga la descripción" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
                         <label>Fecha creación: </label>
-                        <input type="datetime-local" name="fechaCreacion" th:field="*{fechaCreacion}" class="form-control" placeholder="Ponga la fecha" required>
+                        <input type="datetime-local" name="fechaCreacion" th:field="*{fechaCreacion}" class="form-control" placeholder="Ponga la fecha" >
                     </div>
 
                     <br>
