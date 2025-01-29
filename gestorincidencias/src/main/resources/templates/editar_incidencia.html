@@ -59,11 +59,11 @@
                     </div>
                     <div class="form-group">
                         <label>Fecha de Creación: </label>
-                        <input type="datetime-local" name="fechaCreacion" th:field="*{fechaCreacion}" class="form-control" placeholder="Fecha de la incidencia" >                    </div>
+                        <input type="datetime-local" name="fechaCreacion" th:value="*{fechaCreacion}" class="form-control" placeholder="Fecha de la incidencia" >                    </div>
                     <br>
                     <div class="form-group">
                         <label>Fecha Resolución: </label>
-                        <input type="datetime-local" name="fechaResolucion" th:field="*{fechaResolucion}" class="form-control" placeholder="Ponga la fecha" >
+                        <input type="datetime-local" name="fechaResolucion" th:value="*{fechaResolucion}" class="form-control" placeholder="Ponga la fecha" >
                     </div>
                     <div class="form-group">
                         <label>Estado: </label>
@@ -78,7 +78,6 @@
                     <div class="box-footer">
                         <button class="btn btn-success">Guardar</button>
                     </div>
-
                 </form>
 
             </div>
