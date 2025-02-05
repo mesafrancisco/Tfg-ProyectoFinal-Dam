@@ -12,41 +12,54 @@
 <body>
 <div th:replace="~{fragments/menu :: menu}"></div>
 <!-- Contenedor principal con fondo blanco -->
-<div class="">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <!-- Contenedor para filtro y listado, fondo blanco -->
         <div class="">
-            <div class=""  style="background-color: white; padding: 5px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-                <!-- Filtro -->
-                <h3 class="mb-4">Filtro de Incidencias</h3>
-                <form th:action="@{/incidencias}" class="form">
-                    <div class="form-group mb-3">
-                        <label for="titulo">Título:</label>
-                        <input type="text" name="titulo" id="titulo" class="form-control bg-transparent" placeholder="Título" th:value="${titulo}">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="descripcion">Descripción:</label>
-                        <input type="text" name="descripcion" id="descripcion" class="form-control bg-transparent" placeholder="Descripción" th:value="${descripcion}">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="estado">Estado:</label>
-                        <select placeholder="Seleccione el estado" name="estado" id="estado" class="form-control bg-transparent" th:value="${estado}">
-                            <option value="Registrada">Registrada</option>
-                            <option value="En_Curso">En_Curso</option>
-                            <option value="Cerrada">Cerrada</option>
-                        </select>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="fecha">Fecha:</label>
-                        <div class="input-group">
-                            <input type="date" name="fecha" id="fecha" class="form-control bg-transparent" placeholder="Selecciona una fecha" th:value="${fecha}">
+            <div class="container mt-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="p-4" style="background-color: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                            <!-- Filtro -->
+                            <h3 class="mb-4">Filtro de Incidencias</h3>
+                            <form th:action="@{/incidencias}" class="form">
+                                <div class="row">
+                                    <!-- Columna 1 -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="titulo">Título:</label>
+                                        <input type="text" name="titulo" id="titulo" class="form-control bg-transparent" placeholder="Título" th:value="${titulo}">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="descripcion">Descripción:</label>
+                                        <input type="text" name="descripcion" id="descripcion" class="form-control bg-transparent" placeholder="Descripción" th:value="${descripcion}">
+                                    </div>
+
+                                    <!-- Columna 2 -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="estado">Estado:</label>
+                                        <select placeholder="Seleccione el estado" name="estado" id="estado" class="form-control bg-transparent" th:value="${estado}">
+                                            <option value="Registrada">Registrada</option>
+                                            <option value="En_Curso">En_Curso</option>
+                                            <option value="Cerrada">Cerrada</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="fecha">Fecha:</label>
+                                        <div class="input-group">
+                                            <input type="date" name="fecha" id="fecha" class="form-control bg-transparent" placeholder="Selecciona una fecha" th:value="${fecha}">
+                                        </div>
+                                    </div>
+
+                                    <!-- Botones -->
+                                    <div class="col-12 d-flex justify-content-start">
+                                        <input type="submit" class="btn btn-primary mb-2" value="Buscar">
+                                        <input type="button" class="btn btn-secondary mb-2 ml-2" value="Limpiar" onclick="limpiarCampos()">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-start">
-                        <input type="submit" class="btn btn-primary mb-2" value="Buscar">
-                        <input type="button" class="btn btn-secondary mb-2 ml-2" value="Limpiar" onclick="limpiarCampos()">
-                    </div>
-                </form>
+                </div>
             </div>
             <!-- Listado de incidencias -->
             <div class="d-flex justify-content-between align-items-center my-4">

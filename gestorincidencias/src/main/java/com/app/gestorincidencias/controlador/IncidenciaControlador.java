@@ -86,7 +86,6 @@ public class IncidenciaControlador {
         incidenciaExistente.setPrioridad(incidencia.getPrioridad());
         incidenciaExistente.setFechaCreacion(incidencia.getFechaCreacion());
         incidenciaExistente.setFechaResolucion(incidencia.getFechaResolucion());
-
         servicio.actualizarIncidencia(incidenciaExistente);
         return "redirect:/incidencias";
     }
