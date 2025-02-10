@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Drop Down Sidebar Menu | CodingLab</title>
@@ -6,28 +6,28 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width">
 </head>
-
 <body>
+<div th:fragment="menu">
 <div class="sidebar">
     <div class="logo-details">
         <i class='bx bxl-c-plus-plus'></i>
-        <span class="logo_name">CodingLab</span>
+        <span class="logo_name">MR.Franuel</span>
     </div>
     <ul class="nav-links">
         <li>
-            <a href="#">
+            <a href="/incidencias">
                 <i class='bx bx-grid-alt'></i>
-                <span class="link_name">Dashboard</span>
+                <span class="link_name">Incidencias</span>
             </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Category</a></li>
-            </ul>
+<!--            <ul class="sub-menu blank">-->
+<!--                <li><a class="link_name" href="#">Categorias</a></li>-->
+<!--            </ul>-->
         </li>
         <li>
             <div class="icon-link">
-                <a href="#">
+                <a href="/incidencias/nuevo">
                     <i class='bx bx-collection'></i>
-                    <span class="link_name">Category</span>
+                    <span class="link_name">Nueva incidencia</span>
                 </a>
                 <i class='bx bx-chevron-down arrow'></i>
             </div>
@@ -40,7 +40,7 @@
         </li>
         <li>
             <div class="icon-link">
-                <a href="#">
+                <a href="/incidencias/nuevo">
                     <i class='bx bx-book'></i>
                     <span class="link_name">Post</span>
                 </a>
@@ -56,20 +56,20 @@
         <li>
             <a href="#">
                 <i class='bx bx-pie-chart-alt-2'></i>
-                <span class="link_name">Analytics</span>
+                <span class="link_name">Analytica</span>
             </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Analytics</a></li>
-            </ul>
+<!--            <ul class="sub-menu blank">-->
+<!--                <li><a class="link_name" href="#">Analytics</a></li>-->
+<!--            </ul>-->
         </li>
         <li>
             <a href="#">
-                <i class='bx bx-line-chart'></i>
-                <span class="link_name">Chart</span>
+                <i class='bx bx-bar-chart-alt'></i>
+                <span class="link_name">Estadísticas</span>
             </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Chart</a></li>
-            </ul>
+<!--            <ul class="sub-menu blank">-->
+<!--                <li><a class="link_name" href="#">Chart</a></li>-->
+<!--            </ul>-->
         </li>
         <li>
             <div class="icon-link">
@@ -96,52 +96,33 @@
             </ul>
         </li>
         <li>
-            <a href="#">
-                <i class='bx bx-history'></i>
-                <span class="link_name">History</span>
+            <a th:href="@{/info}">
+                <i class='bx bx-group'></i>
+                <span class="link_name">Quienes Somos</span>
             </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">History</a></li>
-            </ul>
+<!--            <ul class="sub-menu blank">-->
+<!--                <li><a class="link_name" href="#">History</a></li>-->
+<!--            </ul>-->
         </li>
         <li>
-            <a href="#">
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <form id="logout-form" th:action="@{/logout}" method="post" style="display: none;">    </form>
+
                 <i class='bx bx-cog'></i>
-                <span class="link_name">Setting</span>
+                <span class="link_name">Cerrar sesion</span>
             </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Setting</a></li>
-            </ul>
+<!--            <ul class="sub-menu blank">-->
+<!--                <li><a class="link_name" href="#">Setting</a></li>-->
+<!--            </ul>-->
         </li>
     </ul>
 </div>
 <section class="home-section">
     <div class="home-content">
         <i class='bx bx-menu'></i>
-        <span class="text">Drop Down Sidebar</span>
+        <span class="text">Incidencias</span>
     </div>
 </section>
-<div class="content" id="content">
-    <h2>Bienvenido a la página</h2>
-    <h2>Bienvenido a la página</h2>
-    <h2>Bienvenido a la página</h2>
-    <h2>Bienvenido a la página</h2>
 </div>
-<script>
-    let arrow = document.querySelectorAll(".arrow");
-    for(let i = 0; i < arrow.length; i++){
-        arrow[i].addEventListener("click", (e) => {
-            let arrowParent = e.target.parentElement.parentElement;
-            arrowParent.classList.toggle("showMenu");
-        });
-    }
-
-    let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".bx-menu");
-    console.log(sidebarBtn);
-    sidebarBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("close");
-    });
-</script>
 </body>
 </html>

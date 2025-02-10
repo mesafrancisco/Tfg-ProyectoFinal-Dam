@@ -8,7 +8,7 @@
 /* Body styling */
 body {
     font-family: 'Arial', sans-serif;
-    background: rgb(155,149,255);
+    background: rgb(23, 16, 162);
     background: linear-gradient(90deg, rgba(155,149,255,1) 0%, rgba(0,212,255,1) 100%);
     color: #343a40;
 }
@@ -34,7 +34,7 @@ body {
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-    background-color: #007bff;
+    background-color: #053c76;
     border-radius: 4px;
 }
 
@@ -57,14 +57,11 @@ body {
 .sidebar a {
     color: white;
     text-decoration: none;
-    padding: 15px;
+    padding: 5px;
     text-align: left;
-    border-bottom: 1px solid #555;
 }
 
-.sidebar a:hover {
-    background-color: #495057;
-}
+
 
 /* Estilo para el botón de abrir/cerrar */
 .sidebar-toggle {

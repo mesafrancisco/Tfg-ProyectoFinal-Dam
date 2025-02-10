@@ -95,4 +95,8 @@ public class IncidenciaControlador {
         servicio.eliminarIncidencia(id);
         return "redirect:/incidencias";
     }
+    @GetMapping("/info")
+    public String mostrarInfo() {
+        return "info"; // Sin extensión, porque Spring busca en templates/
+    }
 }
