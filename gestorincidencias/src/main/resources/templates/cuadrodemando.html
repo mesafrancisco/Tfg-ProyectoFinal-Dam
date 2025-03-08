@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head xmlns:th="http://www.thymeleaf.org">
+  <meta charset="UTF-8">
+  <title>Cuadro De Mandos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/stylemenu.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/menubueno :: menu}"></div>
+<div class="container-fluid mt-5">
+  <div class="row justify-content-end mt-4">
+    <div class="col-10">
+      <div class="p-4" style="background-color: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <button class="btn btn-primary mb-3" onclick="toggleFiltro()">Mostrar/Ocultar Filtro</button>
+
+        <div id="filtroContainer" style="display: none;">
+          <h2 class="mb-4">Filtro</h2>
+          <form th:action="@{/cuadrodemando}" class="form">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="titulo">Título:</label>
+                <input type="text" name="titulo" id="titulo" class="form-control bg-transparent" placeholder="Título" th:value="${titulo}">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" name="descripcion" id="descripcion" class="form-control bg-transparent" placeholder="Descripción" th:value="${descripcion}">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="estado">Estado:</label>
+                <select name="estado" id="estado" class="form-control bg-transparent" th:value="${estado}">
+                  <option value="Registrada">Registrada</option>
+                  <option value="En_Curso">En Curso</option>
+                  <option value="Cerrada">Cerrada</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="fecha">Fecha:</label>
+                <input type="date" name="fecha" id="fecha" class="form-control bg-transparent" th:value="${fecha}">
+              </div>
+              <div class="col-12 d-flex justify-content-start">
+                <input type="submit" class="btn btn-primary mb-2" value="Buscar">
+                <input type="button" class="btn btn-secondary mb-2 ml-2" value="Limpiar">
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <table class="table table-striped table-bordered mt-4">
+          <thead class="table-dark">
+          <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+            <th>Fecha Resolución</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="incidencia : ${incidencias}">
+            <td th:text="${incidencia.titulo}">Título</td>
+            <td th:text="${incidencia.descripcion}">Descripción</td>
+            <td th:text="${incidencia.estado}">Estado</td>
+            <td th:text="${incidencia.fechaCreacion}">Creación</td>
+            <td th:text="${incidencia.fechaResolucion}">Resolución</td>
+          </tr>
+          </tbody>
+        </table>
+        <!-- Paginación -->
+        <div class="row">
+          <div class="col-12">
+            <ul class="pagination justify-content-center">
+              <!-- Botón de Primera página -->
+              <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/cuadrodemando(page=0, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
+                  <i class="fas fa-angle-double-left"></i> <!-- Flecha doble para ir al inicio -->
+                </a>
+              </li>
+
+              <!-- Botón de página anterior -->
+              <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/cuadrodemando(page=${currentPage - 1}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
+                  <i class="fas fa-angle-left"></i> <!-- Flecha para atrás -->
+                </a>
+              </li>
+
+              <!-- Botones de páginas -->
+              <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                  th:classappend="${i == currentPage} ? 'active'">
+                <a class="page-link" href="#"
+                   th:href="@{/cuadrodemando(page=${i}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}"
+                   th:text="${i + 1}"></a>
+              </li>
+
+              <!-- Botón de página siguiente -->
+              <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/cuadrodemando(page=${currentPage + 1}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
+                  <i class="fas fa-angle-right"></i> <!-- Flecha para adelante -->
+                </a>
+              </li>
+
+              <!-- Botón de última página -->
+              <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/cuadrodemando(page=${totalPages - 1}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
+                  <i class="fas fa-angle-double-right"></i> <!-- Flecha doble para ir al final -->
+                </a>
+              </li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/js.js"></script>
+</body>
+</html>

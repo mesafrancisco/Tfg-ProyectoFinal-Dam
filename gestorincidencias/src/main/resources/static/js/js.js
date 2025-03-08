@@ -19,3 +19,12 @@ function limpiarCampos() {
     sidebarBtn.addEventListener("click", () => {
         sidebar.classList.toggle("close");
     });
+
+function toggleFiltro() {
+  var filtro = document.getElementById("filtroContainer");
+  if (filtro.style.display === "none" || filtro.style.display === "") {
+    filtro.style.display = "block";
+  } else {
+    filtro.style.display = "none";
+  }
+}
