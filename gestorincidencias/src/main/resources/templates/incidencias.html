@@ -15,9 +15,9 @@
 <div th:replace="~{fragments/menubueno :: menu}"></div>
 <!-- Contenedor principal con fondo blanco -->
 <div class="container-fluid mt-5">
-    <div class="row justify-content-center">
+    <div class="row justify-content-end mt-4">
         <!-- Contenedor para filtro -->
-        <div class="col-8">
+        <div class="col-10">
             <div class="p-4" style="background-color: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
                 <h3 class="mb-4">Filtro de Incidencias</h3>
                 <form th:action="@{/incidencias}" class="form">
@@ -85,56 +85,53 @@
                     </tr>
                     </tbody>
                 </table>
+                <!-- Paginación -->
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="pagination justify-content-center">
+                            <!-- Botón de Primera página -->
+                            <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                                <a class="page-link" href="#"
+                                   th:href="@{/incidencias(page=0, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
+                                    <i class="fas fa-angle-double-left"></i> <!-- Flecha doble para ir al inicio -->
+                                </a>
+                            </li>
+
+                            <!-- Botón de página anterior -->
+                            <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                                <a class="page-link" href="#"
+                                   th:href="@{/incidencias(page=${currentPage - 1}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
+                                    <i class="fas fa-angle-left"></i> <!-- Flecha para atrás -->
+                                </a>
+                            </li>
+
+                            <!-- Botones de páginas -->
+                            <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                                th:classappend="${i == currentPage} ? 'active'">
+                                <a class="page-link" href="#"
+                                   th:href="@{/incidencias(page=${i}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}"
+                                   th:text="${i + 1}"></a>
+                            </li>
+
+                            <!-- Botón de página siguiente -->
+                            <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                                <a class="page-link" href="#"
+                                   th:href="@{/incidencias(page=${currentPage + 1}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
+                                    <i class="fas fa-angle-right"></i> <!-- Flecha para adelante -->
+                                </a>
+                            </li>
+
+                            <!-- Botón de última página -->
+                            <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                                <a class="page-link" href="#"
+                                   th:href="@{/incidencias(page=${totalPages - 1}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
+                                    <i class="fas fa-angle-double-right"></i> <!-- Flecha doble para ir al final -->
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
             </div>
         </div>
-    </div>
-</div>
-
-
-<!-- Paginación -->
-<div class="row">
-    <div class="col-12">
-        <ul class="pagination justify-content-center">
-            <!-- Botón de Primera página -->
-            <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
-                <a class="page-link" href="#"
-                   th:href="@{/incidencias(page=0, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
-                    <i class="fas fa-angle-double-left"></i> <!-- Flecha doble para ir al inicio -->
-                </a>
-            </li>
-
-            <!-- Botón de página anterior -->
-            <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
-                <a class="page-link" href="#"
-                   th:href="@{/incidencias(page=${currentPage - 1}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
-                    <i class="fas fa-angle-left"></i> <!-- Flecha para atrás -->
-                </a>
-            </li>
-
-            <!-- Botones de páginas -->
-            <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
-                th:classappend="${i == currentPage} ? 'active'">
-                <a class="page-link" href="#"
-                   th:href="@{/incidencias(page=${i}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}"
-                   th:text="${i + 1}"></a>
-            </li>
-
-            <!-- Botón de página siguiente -->
-            <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
-                <a class="page-link" href="#"
-                   th:href="@{/incidencias(page=${currentPage + 1}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
-                    <i class="fas fa-angle-right"></i> <!-- Flecha para adelante -->
-                </a>
-            </li>
-
-            <!-- Botón de última página -->
-            <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
-                <a class="page-link" href="#"
-                   th:href="@{/incidencias(page=${totalPages - 1}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
-                    <i class="fas fa-angle-double-right"></i> <!-- Flecha doble para ir al final -->
-                </a>
-            </li>
-        </ul>
     </div>
 </div>
 </div>
