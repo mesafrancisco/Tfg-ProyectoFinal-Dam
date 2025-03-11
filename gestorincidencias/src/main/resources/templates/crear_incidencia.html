@@ -2,50 +2,17 @@
 <html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
 <head xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
-    <title>Registro de incidencia</title>
+    <title>Lista de incidencias</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/stylemenu.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/stylemenu.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <!-- Logo de la aplicación -->
-        <a class="navbar-brand" href="#">
-            <img src="/images/Logo.webp" width="100" height="100" alt="Logo">
-            Gestión de Incidencias
-        </a>
-        <!-- Vistas de la aplicación -->
-        <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/incidencias}">Incidencias</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/incidencias/nuevo}">Nueva incidencia</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Reportes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Usuarios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Configuración</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<br>
+<div th:replace="~{fragments/menubueno :: menu}"></div>
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
@@ -93,5 +60,6 @@
         </div>
     </div>
 </div>
+<script src="/js/js.js"></script>
 </body>
 </html>
