@@ -176,6 +176,14 @@ footer a:hover {
     background-color: #1e1e1e;
 }
 
+.home-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+}
+
 /* Cambiar estilos de las tarjetas y contenedores */
 .dark-mode .p-4 {
     background-color: #2b2b2b !important;
