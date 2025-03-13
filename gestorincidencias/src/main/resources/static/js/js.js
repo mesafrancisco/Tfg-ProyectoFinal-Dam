@@ -28,3 +28,29 @@ function toggleFiltro() {
     filtro.style.display = "none";
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.getElementById("dark-mode-toggle");
+    const body = document.body;
+
+    // Verificar si el usuario ya tenía activado el modo oscuro
+    if (localStorage.getItem("dark-mode") === "enabled") {
+        body.classList.add("dark-mode");
+        toggleButton.textContent = "Modo Claro";
+    }
+
+    // Evento para cambiar el modo oscuro
+    toggleButton.addEventListener("click", function () {
+        body.classList.toggle("dark-mode");
+
+        // Guardar preferencia en localStorage
+        if (body.classList.contains("dark-mode")) {
+            localStorage.setItem("dark-mode", "enabled");
+            toggleButton.textContent = "Modo Claro";
+        } else {
+            localStorage.setItem("dark-mode", "disabled");
+            toggleButton.textContent = "Modo Oscuro";
+        }
+    });
+});
+

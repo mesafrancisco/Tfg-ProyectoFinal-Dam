@@ -161,3 +161,35 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+/* Modo oscuro */
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+/* Cambiar los estilos específicos del sidebar */
+.dark-mode .sidebar {
+    background-color: #1e1e1e;
+}
+
+.dark-mode .home-section {
+    background-color: #1e1e1e;
+}
+
+/* Cambiar estilos de las tarjetas y contenedores */
+.dark-mode .p-4 {
+    background-color: #2b2b2b !important;
+    color: white;
+}
+
+/* Cambiar el color de la tabla */
+.dark-mode .table {
+    background-color: #333;
+    color: white;
+}
+
+/* Cambiar color de los botones en modo oscuro */
+.dark-mode .btn-primary {
+    background-color: #444;
+    border-color: #666;
+}
