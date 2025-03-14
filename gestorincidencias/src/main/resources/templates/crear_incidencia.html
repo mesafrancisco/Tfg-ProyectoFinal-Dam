@@ -15,12 +15,10 @@
 <div th:replace="~{fragments/menubueno :: menu}"></div>
 <div class="container">
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+        <div class="p-4 col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class="text-center">Registro de incidencia</h1>
             <div class="card-body">
-
                 <form th:action="@{/incidencias}" th:object="${incidencia}" method="post">
-
                     <div class="form-group">
                         <label>Título: </label>
                         <input type="text" name="titulo" th:field="*{titulo}" class="form-control" placeholder="Ponga el título" required>
