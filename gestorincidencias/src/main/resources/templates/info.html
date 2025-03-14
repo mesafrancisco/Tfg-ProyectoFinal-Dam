@@ -1,78 +1,96 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Información del Negocio</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/stylemenu.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Información del Negocio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stylemenu.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 <div th:replace="~{fragments/menubueno :: menu}"></div>
 <div class="container text-center mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-4">
-      <div class="card">
-        <img src="/images/fondo.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="/images/alex-kotliarskyi-QBpZGqEMsKg-unsplash.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Hola! ¿Sabes quien somos?</h5>
+                    <p class="card-text">Nuestra app permite registrar, asignar y dar seguimiento a incidencias en
+                        tiempo real, asegurando que ningún problema quede sin atender. Gracias a su sistema de
+                        notificaciones automáticas y niveles de prioridad, cada incidencia recibe la atención adecuada
+                        según su urgencia. Esto agiliza los tiempos de respuesta, mejora la productividad y optimiza la
+                        organización dentro de los equipos de trabajo.</p>
+                    <a th:href="@{/incidencias}" class="btn btn-primary">Ver Incidencias</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card" >
-        <img src="/images/fondo.jpg" class="card-img-top" alt="Imagen">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="/images/erik-mclean-aielvGxZB0g-unsplash.jpg" class="card-img-top" alt="Imagen">
+                <div class="card-body">
+                    <h5 class="card-title">Instrucciones para Reportar</h5>
+                    <p class="card-text">Facilita la interacción entre equipos y clientes con comentarios en cada
+                        incidencia, estados actualizados y alertas en tiempo real. Toda la información queda
+                        centralizada en un solo lugar, evitando malentendidos y reduciendo la pérdida de datos. Esto
+                        permite una colaboración fluida, asegurando respuestas rápidas y efectivas para una mejor
+                        experiencia tanto para los usuarios como para los administradores del sistema.</p>
+                    <a href="/incidencias/nuevo" class="btn btn-primary">Reportar incidencia</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <img src="/images/fondo.jpg" class="card-img-top" alt="Imagen">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="/images/linkedin-sales-solutions-46bom4lObsA-unsplash.jpg" class="card-img-top" alt="Imagen">
+                <div class="card-body">
+                    <h5 class="card-title">Beneficios de Usar un Sistema</h5>
+                    <p class="card-text">Genera informes detallados con datos clave sobre incidencias, tiempos de
+                        resolución y patrones repetitivos dentro del sistema. Con esta información, las empresas pueden
+                        detectar problemas recurrentes, optimizar procesos internos y tomar decisiones basadas en datos
+                        concretos. Esto no solo mejora la eficiencia operativa, sino que también ayuda a prevenir
+                        futuras incidencias.</p>
+                    <a th:href="@{/registro}" class="btn btn-primary">Crear usuario</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <div class="container mt-5">
-  <div class="col-md-12">
-    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="/images/fondo.jpg" class="d-block w-100" alt="Imagen">
+    <div class="col-md-12">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/images/alex-kotliarskyi-QBpZGqEMsKg-unsplash.jpg" class="d-block w-100" alt="Imagen">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/erik-mclean-aielvGxZB0g-unsplash.jpg" class="d-block w-100" alt="Imagen">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/linkedin-sales-solutions-46bom4lObsA-unsplash.jpg" class="d-block w-100" alt="Imagen">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/nicolas-thomas-3GZi6OpSDcY-unsplash.jpg" class="d-block w-100" alt="Imagen">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/ux-indonesia-2NDWFiD0UMM-unsplash.jpg" class="d-block w-100" alt="Imagen">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <div class="carousel-item">
-          <img src="/images/fondo.jpg" class="d-block w-100" alt="Imagen">
-        </div>
-        <div class="carousel-item">
-          <img src="/images/fondo.jpg" class="d-block w-100" alt="Imagen">
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
-  </div>
 </div>
 <br>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
