@@ -77,7 +77,6 @@ body {
 
 /* Content styling */
 .content {
-    margin-left: 250px;
     padding: 20px;
     transition: margin-left 0.3s;
 }
@@ -88,42 +87,50 @@ body {
 }
 
 /* Table styling */
+/* Estilo general de la tabla */
 .table {
-    margin-top: 30px;
+    margin-top: 20px;
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    font-size: 0.9rem; /* Reduce el tamaño de la fuente */
 }
 
-.table th, .table td {
-    padding: 15px;
-    text-align: left;
-}
-
+/* Encabezado */
 .table th {
     background-color: #343a40;
-    color: #fff;
-    font-size: 1.3rem;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
 }
 
+/* Filas alternas con colores más suaves */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa; /* Un gris más claro y moderno */
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #ffffff; /* Mantiene el blanco */
+}
+
+/* Estilo de las celdas */
 .table td {
     color: #495057;
+    padding: 10px;
+    border-color: #e0e0e0;
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f2f2f2;
-}
-
-.table-bordered td, .table-bordered th {
-    border: 1px solid #ddd;
-}
-
+/* Botones más pequeños y estilizados */
 .table .btn {
-    font-size: 0.9rem;
-    padding: 5px 10px;
+    font-size: 0.85rem;
+    padding: 4px 8px;
     border-radius: 4px;
 }
 
+/* Botón Editar */
 .table .btn-info {
     background-color: #17a2b8;
     border-color: #17a2b8;
@@ -134,6 +141,7 @@ body {
     border-color: #117a8b;
 }
 
+/* Botón Eliminar */
 .table .btn-danger {
     background-color: #dc3545;
     border-color: #dc3545;

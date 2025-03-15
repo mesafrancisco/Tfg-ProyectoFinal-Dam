@@ -28,3 +28,19 @@ function toggleFiltro() {
     filtro.style.display = "none";
   }
 }
+
+function toggleEditMode() {
+    let inputs = document.querySelectorAll(".form-control");
+    let isReadOnly = inputs[0].hasAttribute("readonly");
+
+    inputs.forEach(input => {
+        if (isReadOnly) {
+            input.removeAttribute("readonly");
+        } else {
+            input.setAttribute("readonly", "readonly");
+        }
+    });
+
+    document.getElementById("editarBtn").classList.toggle("d-none");
+    document.getElementById("guardarBtn").classList.toggle("d-none");
+}
