@@ -5,6 +5,7 @@ import com.app.gestorincidencias.repositorio.ClienteRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,7 +16,8 @@ public class ClienteServicioImpl implements ClienteServicio {
 
     @Override
     public Page<Cliente> buscarPorFiltros(String nombre, String apellidos, String telefono, String email, int page, int size) {
-        return repositorio.buscarPorFiltros(nombre, apellidos, telefono, email, PageRequest.of(page, size));
+        Pageable pageable = PageRequest.of(page, size);
+        return repositorio.findByFiltros(nombre, apellidos, telefono, email, PageRequest.of(page, size));
     }
 
     @Override
@@ -30,7 +32,7 @@ public class ClienteServicioImpl implements ClienteServicio {
 
     @Override
     public Cliente obtenerClientePorId(Long id) {
-        return repositorio.findById(id).orElse(null);
+        return repositorio.findById(id).get();
     }
 
     @Override

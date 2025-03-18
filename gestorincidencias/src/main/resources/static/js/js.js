@@ -5,6 +5,14 @@ function limpiarCampos() {
     window.location = '/incidencias';  // Redirige a la lista de incidencias sin filtros
 }
 
+function limpiarCamposCliente() {
+    document.getElementById("nombre").value = "";
+    document.getElementById("apellidos").value = "";
+    document.getElementById("telefono").value = "";
+    document.getElementById("email").value = "";
+    window.location = '/clientes';
+}
+
     let arrow = document.querySelectorAll(".arrow");
     for(let i = 0; i < arrow.length; i++){
         arrow[i].addEventListener("click", (e) => {

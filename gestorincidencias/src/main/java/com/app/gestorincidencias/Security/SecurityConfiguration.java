@@ -45,7 +45,7 @@ public class SecurityConfiguration {
                 .and()
                 .formLogin(form -> form
                         .loginPage("/login")   // Configuración de la página de login
-                        .defaultSuccessUrl("/cuadrodemando", true)  // Redirige SIEMPRE a /incidencias después del login
+                        .defaultSuccessUrl("/cuadrodemando", true)
                         .permitAll()           // Permitir acceso a todos
                 )
                 .logout(logout -> logout

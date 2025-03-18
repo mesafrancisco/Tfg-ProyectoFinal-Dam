@@ -16,7 +16,7 @@ public class IncidenciaControlador {
     @Autowired
     private IncidenciaServicio servicio;
 
-    @GetMapping({ "/incidencias", "/" })
+    @GetMapping("/incidencias")
     public String listarIncidencias(Model modelo,
                                     @RequestParam(value = "palabraClave", required = false) String palabraClave,
                                     @RequestParam(value = "titulo", required = false) String titulo,

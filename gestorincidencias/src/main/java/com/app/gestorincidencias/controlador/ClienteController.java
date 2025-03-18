@@ -17,7 +17,7 @@ public class ClienteController {
     @Autowired
     private ClienteServicio clienteServicioservicio;
 
-    @GetMapping({"/clientes", "/"})
+    @GetMapping("/clientes")
     public String listarClientes(Model modelo,
                                  @RequestParam(value = "nombre", required = false) String nombre,
                                  @RequestParam(value = "apellidos", required = false) String apellidos,
@@ -35,9 +35,11 @@ public class ClienteController {
             clientesPage = clienteServicioservicio.listarTodosLosClientes(page, size);
         }
 
+        int totalPages = clientesPage.getTotalPages();
+
         modelo.addAttribute("clientes", clientesPage.getContent());
         modelo.addAttribute("currentPage", page);
-        modelo.addAttribute("totalPages", clientesPage.getTotalPages());
+        modelo.addAttribute("totalPages", clientesPage);
         modelo.addAttribute("size", size);
 
         return "clientes";
