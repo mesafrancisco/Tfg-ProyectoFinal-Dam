@@ -20,7 +20,6 @@ public class Incidencia {
     private LocalDateTime fechaResolucion;
     private String asignadoA; // Puede ser un ID de usuario o nombre
     private String prioridad; // Ejemplo: "alta", "media", "baja"
-
     // Getters y Setters
     public Long getId() {
         return id;

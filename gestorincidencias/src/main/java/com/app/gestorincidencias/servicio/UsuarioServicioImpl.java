@@ -13,9 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,4 +56,18 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     public List<Usuario> listarUsuarios() {
         return usuarioRepositorio.findAll();
     }
+
+    @Override
+    public List<String> listarEmails() {
+        // Este método recupera solo los correos electrónicos de todos los usuarios
+        return usuarioRepositorio.findAll().stream()
+                .map(Usuario::getEmail)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Usuario buscarPorEmail(String email) {
+        return usuarioRepositorio.findByEmail(email);
+    }
+
 }

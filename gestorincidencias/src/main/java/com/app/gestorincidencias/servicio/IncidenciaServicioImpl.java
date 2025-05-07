@@ -48,4 +48,5 @@ public class IncidenciaServicioImpl implements IncidenciaServicio {
     public void eliminarIncidencia(Long id) {
         repositorio.deleteById(id);
     }
+
 }

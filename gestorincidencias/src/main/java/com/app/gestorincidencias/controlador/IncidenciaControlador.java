@@ -1,7 +1,9 @@
 package com.app.gestorincidencias.controlador;
 
 import com.app.gestorincidencias.entidad.Incidencia;
+import com.app.gestorincidencias.entidad.Usuario;
 import com.app.gestorincidencias.servicio.IncidenciaServicio;
+import com.app.gestorincidencias.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,11 +12,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class IncidenciaControlador {
 
     @Autowired
     private IncidenciaServicio servicio;
+
+    @Autowired
+    private UsuarioServicio usuarioServicio;  // Inyectamos el UsuarioServicio
 
     @GetMapping({ "/incidencias", "/" })
     public String listarIncidencias(Model modelo,
@@ -46,8 +53,12 @@ public class IncidenciaControlador {
         // Obtener el total de incidencias para calcular el total de páginas
         int totalPages = incidenciasPage.getTotalPages();
 
+        // Obtener la lista de usuarios
+        List<Usuario> usuarios = usuarioServicio.listarUsuarios();  // Usamos el método que ya tienes
+
         // Añadir atributos al modelo para la vista
-        modelo.addAttribute("incidencias", incidenciasPage.getContent()); // Aquí pasamos la lista de incidencias de la página
+        modelo.addAttribute("incidencias", incidenciasPage.getContent());
+        modelo.addAttribute("usuarios", usuarios);  // Pasamos la lista de usuarios al modelo
         modelo.addAttribute("palabraClave", palabraClave);
         modelo.addAttribute("currentPage", page);
         modelo.addAttribute("totalPages", totalPages);
@@ -95,8 +106,43 @@ public class IncidenciaControlador {
         servicio.eliminarIncidencia(id);
         return "redirect:/incidencias";
     }
+    @GetMapping("/emails")
+    public String mostrarCorreosElectronicos(Model modelo) {
+        // Obtener todos los correos electrónicos
+        List<String> emails = usuarioServicio.listarEmails();
+        modelo.addAttribute("emails", emails);
+        return "mostrar_emails";  // Nombre de la plantilla que mostraría los correos electrónicos
+    }
     @GetMapping("/info")
     public String mostrarInfo() {
         return "info"; // Sin extensión, porque Spring busca en templates/
+    }
+
+
+
+    @GetMapping("/incidencias/asignar/{id}")
+    public String mostrarFormularioDeAsignacion(@PathVariable Long id, Model modelo) {
+        Incidencia incidencia = servicio.obtenerIncidenciaPorId(id);
+        List<Usuario> usuarios = usuarioServicio.listarUsuarios(); // Lista de usuarios
+        modelo.addAttribute("incidencia", incidencia);
+        modelo.addAttribute("usuarios", usuarios);
+        return "asignar_incidencia"; // Nombre de la vista donde se mostrará el formulario
+    }
+
+    @PostMapping("/incidencias/asignar/{id}")
+    public String asignarIncidencia(@PathVariable Long id, @RequestParam String correoUsuario) {
+        // Obtener la incidencia
+        Incidencia incidencia = servicio.obtenerIncidenciaPorId(id);
+
+        // Obtener el usuario por su correo electrónico
+        Usuario usuario = usuarioServicio.buscarPorEmail(correoUsuario);
+
+        // Asignar el usuario a la incidencia
+        incidencia.setAsignadoA(usuario.getEmail());
+
+        // Guardar los cambios
+        servicio.actualizarIncidencia(incidencia);
+
+        return "redirect:/incidencias";  // Redirigir a la lista de incidencias
     }
 }
