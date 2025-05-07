@@ -13,6 +13,8 @@ body {
     background: linear-gradient(90deg, rgba(155,149,255,1) 0%, rgba(0,212,255,1) 100%);
     color: #343a40;
 }
+select{
+width:50%}
 
 div.p-4 {
     background-color: #d8f5ff;
