@@ -13,5 +13,6 @@ public interface IncidenciaServicio {
     public Incidencia obtenerIncidenciaPorId(Long id);
     public Incidencia actualizarIncidencia(Incidencia incidencia);
     public void eliminarIncidencia(Long id);
+    Page<Incidencia> listarIncidenciasPorUsuario(String email, int page, int size);
 }
 

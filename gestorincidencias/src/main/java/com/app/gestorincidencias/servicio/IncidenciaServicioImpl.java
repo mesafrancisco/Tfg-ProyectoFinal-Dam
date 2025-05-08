@@ -49,4 +49,10 @@ public class IncidenciaServicioImpl implements IncidenciaServicio {
         repositorio.deleteById(id);
     }
 
+    @Override
+    public Page<Incidencia> listarIncidenciasPorUsuario(String email, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return repositorio.findByAsignadoA(email, pageable);
+    }
+
 }

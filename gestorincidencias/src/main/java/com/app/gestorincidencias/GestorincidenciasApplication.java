@@ -14,6 +14,8 @@ public class GestorincidenciasApplication implements CommandLineRunner {
     private final static Logger log = Logger.getLogger(GestorincidenciasApplication.class.getName());
 
     public static void main(String[] args) {
+
+
         SpringApplication.run(GestorincidenciasApplication.class, args);
     }
     @Autowired

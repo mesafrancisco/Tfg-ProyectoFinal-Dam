@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Asignar Roles</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/stylemenu.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Menú de navegación -->
+<div th:replace="~{fragments/menubueno :: menu}"></div>
+
+<!-- Contenedor principal con fondo blanco -->
+<div class="container-fluid mt-5">
+  <div class="row justify-content-center mt-4">
+    <div class="col-10">
+      <div class="p-4" style="background-color: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3>Listado de Usuarios</h3>
+        </div>
+
+        <!-- Tabla de usuarios -->
+        <table class="table table-striped table-bordered">
+          <thead class="table-dark">
+          <tr>
+            <th>Email</th>
+            <th>Nombre</th>
+            <th>Rol Actual</th>
+            <th>Asignar Nuevo Rol</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="usuario : ${usuarios}">
+            <td th:text="${usuario.email}"></td>
+            <td th:text="${usuario.nombre} + ' ' + ${usuario.apellido}"></td>
+            <td th:text="${usuario.roles[0].nombre}">Sin rol</td>
+            <td>
+              <form th:action="@{/admin/usuarios/asignar-rol}" method="post">
+                <input type="hidden" name="emailUsuario" th:value="${usuario.email}" />
+                <select name="rol" class="form-control">
+                  <option th:each="rol : ${roles}" th:value="${rol.nombre}" th:text="${rol.nombre}"></option>
+                </select>
+                <button type="submit" class="btn btn-primary mt-2">Asignar Rol</button>
+              </form>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/js.js"></script>
+</body>
+</html>

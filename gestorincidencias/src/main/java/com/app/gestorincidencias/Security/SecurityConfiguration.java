@@ -41,19 +41,20 @@ public class SecurityConfiguration {
         http
                 .authorizeRequests()
                 .requestMatchers("/registro**", "/js/**", "/css/**", "/images/**").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN") // <-- PROTEGE esta ruta solo para admins
                 .anyRequest().authenticated()
                 .and()
                 .formLogin(form -> form
-                        .loginPage("/login")   // Configuración de la página de login
-                        .defaultSuccessUrl("/incidencias", true)  // Redirige SIEMPRE a /incidencias después del login
-                        .permitAll()           // Permitir acceso a todos
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/incidencias", true)
+                        .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/login?logout")  // URL de redirección tras logout
-                        .invalidateHttpSession(true)  // Invalidar sesión
-                        .clearAuthentication(true)  // Limpiar autenticación
-                        .permitAll()  // Permitir acceso a todos
+                        .logoutSuccessUrl("/login?logout")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .permitAll()
                 );
 
         return http.build();

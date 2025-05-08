@@ -3,6 +3,7 @@ package com.app.gestorincidencias.servicio;
 import com.app.gestorincidencias.dto.UsuarioRegistroDTO;
 import com.app.gestorincidencias.entidad.Rol;
 import com.app.gestorincidencias.entidad.Usuario;
+import com.app.gestorincidencias.repositorio.RolRepositorio;
 import com.app.gestorincidencias.repositorio.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,6 +26,9 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RolRepositorio rolRepositorio;
 
     public UsuarioServicioImpl(UsuarioRepositorio usuarioRepositorio) {
         super();
@@ -68,6 +72,26 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     @Override
     public Usuario buscarPorEmail(String email) {
         return usuarioRepositorio.findByEmail(email);
+    }
+
+
+    @Override
+    public void asignarRol(String emailUsuario, String nombreRol) {
+        Usuario usuario = usuarioRepositorio.findByEmail(emailUsuario);
+        if (usuario == null) {
+            throw new UsernameNotFoundException("Usuario no encontrado: " + emailUsuario);
+        }
+
+        Rol rol = rolRepositorio.findByNombre(nombreRol);
+        if (rol == null) {
+            throw new IllegalArgumentException("Rol no existe: " + nombreRol);
+        }
+
+        // Evita duplicados
+        if (!usuario.getRoles().contains(rol)) {
+            usuario.getRoles().add(rol);
+            usuarioRepositorio.save(usuario);
+        }
     }
 
 }

@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.GrantedAuthority;
+
 
 import java.util.List;
 
@@ -32,39 +36,37 @@ public class IncidenciaControlador {
                                     @RequestParam(value = "page", defaultValue = "0") int page,
                                     @RequestParam(value = "size", defaultValue = "10") int size) {
 
-        // Parámetros de paginación
         Pageable pageable = PageRequest.of(page, size);
-
         Page<Incidencia> incidenciasPage;
 
-        // Si hay palabra clave, buscamos incidencias por palabra clave
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        boolean isAdmin = auth.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(rol -> rol.equals("ROLE_ADMIN"));
+
         if (palabraClave != null && !palabraClave.isEmpty()) {
-            incidenciasPage = servicio.listarTodasLasIncidencias(palabraClave, page, size);
-        }
-        // Si hay filtros de título, estado o descripción, buscamos con los filtros
-        else if (titulo != null || estado != null || descripcion != null) {
-            incidenciasPage = servicio.buscarPorFiltros(titulo, estado, descripcion, page, size);
-        }
-        // Si no hay filtros ni palabra clave, mostramos todas las incidencias
-        else {
-            incidenciasPage = servicio.listarTodasLasIncidencias("", page, size);
+            incidenciasPage = isAdmin
+                    ? servicio.listarTodasLasIncidencias(palabraClave, page, size)
+                    : servicio.listarIncidenciasPorUsuario(email, page, size); // O puedes filtrar también aquí por palabra clave si implementas ese método
+        } else if (titulo != null || estado != null || descripcion != null) {
+            incidenciasPage = isAdmin
+                    ? servicio.buscarPorFiltros(titulo, estado, descripcion, page, size)
+                    : servicio.listarIncidenciasPorUsuario(email, page, size);
+        } else {
+            incidenciasPage = isAdmin
+                    ? servicio.listarTodasLasIncidencias("", page, size)
+                    : servicio.listarIncidenciasPorUsuario(email, page, size);
         }
 
-        // Obtener el total de incidencias para calcular el total de páginas
-        int totalPages = incidenciasPage.getTotalPages();
-
-        // Obtener la lista de usuarios
-        List<Usuario> usuarios = usuarioServicio.listarUsuarios();  // Usamos el método que ya tienes
-
-        // Añadir atributos al modelo para la vista
         modelo.addAttribute("incidencias", incidenciasPage.getContent());
-        modelo.addAttribute("usuarios", usuarios);  // Pasamos la lista de usuarios al modelo
         modelo.addAttribute("palabraClave", palabraClave);
         modelo.addAttribute("currentPage", page);
-        modelo.addAttribute("totalPages", totalPages);
+        modelo.addAttribute("totalPages", incidenciasPage.getTotalPages());
         modelo.addAttribute("size", size);
+        modelo.addAttribute("usuarios", usuarioServicio.listarUsuarios());
 
-        return "incidencias"; // nombre de la plantilla Thymeleaf
+        return "incidencias";
     }
 
     @GetMapping("/incidencias/nuevo")

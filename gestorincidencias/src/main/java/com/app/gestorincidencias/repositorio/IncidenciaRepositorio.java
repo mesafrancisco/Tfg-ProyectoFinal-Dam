@@ -28,4 +28,7 @@ public interface IncidenciaRepositorio extends JpaRepository<Incidencia, Long> {
             "(:palabraClave IS NULL OR LOWER(i.estado) LIKE LOWER(CONCAT('%', :palabraClave, '%'))) OR " +
             "(:palabraClave IS NULL OR LOWER(i.descripcion) LIKE LOWER(CONCAT('%', :palabraClave, '%'))) ")
     Page<Incidencia> findAllByPalabraClave(@Param("palabraClave") String palabraClave, Pageable pageable);
+
+    Page<Incidencia> findByAsignadoA(String email, Pageable pageable);
+
 }

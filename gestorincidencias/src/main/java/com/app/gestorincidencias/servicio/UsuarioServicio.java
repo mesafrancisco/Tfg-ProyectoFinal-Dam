@@ -15,4 +15,7 @@ public interface UsuarioServicio extends UserDetailsService{
     List<String> listarEmails();
 
     Usuario buscarPorEmail(String email);
+
+    void asignarRol(String emailUsuario, String nombreRol);
+
 }
