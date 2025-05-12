@@ -18,7 +18,8 @@ public class IncidenciaServicioImpl implements IncidenciaServicio {
     public Page<Incidencia> listarTodasLasIncidencias(String palabraClave, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         if (palabraClave != null && !palabraClave.isEmpty()) {
-            return repositorio.findAllByPalabraClave(palabraClave, pageable);
+            return
+                    repositorio.findAllByPalabraClave(palabraClave, pageable);
         }
         return repositorio.findAll(pageable); // Si no hay palabra clave, devuelve todas las incidencias con paginación
     }
@@ -54,5 +55,4 @@ public class IncidenciaServicioImpl implements IncidenciaServicio {
         Pageable pageable = PageRequest.of(page, size);
         return repositorio.findByAsignadoA(email, pageable);
     }
-
 }
