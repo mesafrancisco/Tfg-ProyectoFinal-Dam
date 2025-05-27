@@ -23,11 +23,22 @@ public class AdminControlador {
     private RolRepositorio rolRepositorio;
 
     @GetMapping("/usuarios")
-    public String listarUsuarios(Model modelo) {
-        modelo.addAttribute("usuarios", usuarioServicio.listarUsuarios());
+    public String listarUsuarios(
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) String rol,
+            Model modelo) {
+
+        modelo.addAttribute("usuarios", usuarioServicio.filtrarUsuarios(email, nombre, rol));
         modelo.addAttribute("roles", rolRepositorio.findAll());
+
+        modelo.addAttribute("email", email);
+        modelo.addAttribute("nombre", nombre);
+        modelo.addAttribute("rolSeleccionado", rol);
+
         return "usuarios";
     }
+
 
     @GetMapping("/usuarios/asignar-rol")
     public String asignarRolFormulario(Model modelo) {
@@ -39,7 +50,8 @@ public class AdminControlador {
     @PostMapping("/usuarios/asignar-rol")
     public String asignarRol(@RequestParam String emailUsuario, @RequestParam String rol) {
         usuarioServicio.asignarRol(emailUsuario, rol);
-        return "redirect:/usuarios";
+        return "redirect:/admin/usuarios";
     }
+
 }
 

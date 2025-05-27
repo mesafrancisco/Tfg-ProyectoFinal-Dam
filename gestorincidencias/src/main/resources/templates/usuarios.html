@@ -24,6 +24,36 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h3>Listado de Usuarios</h3>
         </div>
+        <!-- Botón para mostrar/ocultar filtro -->
+        <button class="btn btn-primary mb-3" onclick="toggleFiltro()">Filtro</button>
+
+        <!-- Contenedor del filtro -->
+        <div id="filtroContainer" style="display: none;">
+          <form th:action="@{/admin/usuarios}" method="get" class="form">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" class="form-control" placeholder="Email" th:value="${email}">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" th:value="${nombre}">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="rol">Rol:</label>
+                <select name="rol" id="rol" class="form-control">
+                  <option value="">Todos</option>
+                  <option th:each="rol : ${roles}" th:value="${rol.nombre}" th:text="${rol.nombre}"
+                          th:selected="${rol.nombre == rolSeleccionado}"></option>
+                </select>
+              </div>
+            </div>
+            <div class="d-flex">
+              <button type="submit" class="btn btn-primary mr-2">Buscar</button>
+              <a href="/admin/usuarios" class="btn btn-secondary">Limpiar</a>
+            </div>
+          </form>
+        </div>
 
         <!-- Tabla de usuarios -->
         <table class="table table-striped table-bordered">

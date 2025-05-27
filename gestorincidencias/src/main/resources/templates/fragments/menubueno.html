@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Drop Down Sidebar Menu | CodingLab</title>
@@ -37,7 +37,7 @@
                 <li><a href="/incidencias/nuevo">Nueva Incidecnia</a></li>
             </ul>
         </li>
-        <li>
+        <li th:if="${esAdmin}">
             <div class="icon-link">
                 <a href="/admin/usuarios/asignar-rol">
                     <i class='bx bx-book'></i>
@@ -45,12 +45,6 @@
                 </a>
                 <i class='bx bx-chevron-down arrow'></i>
             </div>
-            <ul class="sub-menu">
-                <li><a class="link_name" href="#">Posts</a></li>
-                <li><a href="#">Web Design</a></li>
-                <li><a href="#">Card Design</a></li>
-                <li><a href="#">Login form</a></li>
-            </ul>
         </li>
         <li>
             <a href="#">
@@ -124,5 +118,6 @@
     </div>
 </section>
 </div>
+<script src="/js/js.js"></script>
 </body>
 </html>
