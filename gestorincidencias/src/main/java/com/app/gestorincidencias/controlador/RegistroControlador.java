@@ -17,6 +17,10 @@ public class RegistroControlador {
     public String iniciarSesion() {
         return "login";
     }
+    @GetMapping("/recuperar-password")
+    public String mostrarFormularioRecuperar() {
+        return "recuperar-password";
+    }
     @GetMapping("/index")
     public String verPaginaDeInicio(Model modelo) {
         modelo.addAttribute("usuarios", servicio.listarUsuarios());

@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
-
+    public Usuario findByTokenRecuperacion(String token);
     public Usuario findByEmail(String email);
 
 }

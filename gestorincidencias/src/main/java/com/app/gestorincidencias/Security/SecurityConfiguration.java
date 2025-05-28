@@ -38,7 +38,14 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .requestMatchers("/registro**", "/js/**", "/css/**", "/images/**").permitAll()
+                .requestMatchers("/registro**",
+                        "/js/**",
+                        "/css/**",
+                        "/images/**",
+                        "/recuperar-password",
+                        "/recuperar",
+                        "/restablecer",
+                        "/guardar-nueva-contrasena").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN") // <-- PROTEGE esta ruta solo para admins
                 .anyRequest().authenticated()
                 .and()

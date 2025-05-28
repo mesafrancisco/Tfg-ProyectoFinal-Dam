@@ -2,6 +2,7 @@ package com.app.gestorincidencias.entidad;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Entity
@@ -17,7 +18,11 @@ public class Usuario {
 
     @Column(name = "apellido")
     private String apellido;
+    @Column(name = "token_recuperacion")
+    private String tokenRecuperacion;
 
+    @Column(name = "token_expiracion")
+    private LocalDateTime tokenExpiracion;
     private String email;
     private String password;
 
@@ -98,6 +103,23 @@ public class Usuario {
 
     public Usuario() {
 
+    }
+
+
+    public String getTokenRecuperacion() {
+        return tokenRecuperacion;
+    }
+
+    public void setTokenRecuperacion(String tokenRecuperacion) {
+        this.tokenRecuperacion = tokenRecuperacion;
+    }
+
+    public LocalDateTime getTokenExpiracion() {
+        return tokenExpiracion;
+    }
+
+    public void setTokenExpiracion(LocalDateTime tokenExpiracion) {
+        this.tokenExpiracion = tokenExpiracion;
     }
 
 }
