@@ -4,6 +4,7 @@ import com.app.gestorincidencias.entidad.Incidencia;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IncidenciaServicio {
     // Cambié el tipo de retorno a Page<Incidencia> en lugar de List<Incidencia>
@@ -16,5 +17,9 @@ public interface IncidenciaServicio {
     Page<Incidencia> listarIncidenciasPorUsuario(String email, int page, int size);
 
     List<Incidencia> listarTodas();
+
+    Page<Incidencia> buscarPorFiltrosCompleto(String titulo, String estado, String descripcion, String fechaInicio, String fechaFin, int page, int size);
+
+    Map<String, Long> contarIncidenciasPorEstado(String titulo, String estado, String descripcion, String palabraClave);
 }
 
