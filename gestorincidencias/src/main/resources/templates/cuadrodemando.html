@@ -28,11 +28,16 @@
         </div>
 
         <!-- Contenedor gráfico oculto inicialmente -->
-        <div id="graficoContainer" style="display:none; max-width:600px; margin-bottom: 20px;">
+        <div id="graficoContainer" style="display:none; max-width: 100%; margin-bottom: 20px;">
           <h3>Incidencias por Estado</h3>
-          <canvas id="estadoChart" width="600" height="300"></canvas>
-        </div>
+          <div style="display: flex; justify-content: space-around; align-items: center;">
+            <!-- Gráfico de barras original -->
+            <canvas id="estadoChart" width="600" height="300" style="flex-shrink: 0;"></canvas>
 
+            <!-- Gráfico circular -->
+            <canvas id="estadoPieChart" width="600" height="300" style="flex-shrink: 0;"></canvas>
+          </div>
+        </div>
         <!-- Filtro: mejorado estilo y estructura -->
         <div id="filtroContainer" style="display:none;">
           <h3 class="mb-4">Filtro de Incidencias</h3>
@@ -133,9 +138,10 @@
   const conteoPorEstado = /*[[${conteoPorEstado}]]*/ {};
   const estados = Object.keys(conteoPorEstado);
   const cantidades = Object.values(conteoPorEstado);
-  const ctx = document.getElementById('estadoChart').getContext('2d');
 
-  const estadoChart = new Chart(ctx, {
+  // Gráfico de barras
+  const ctxBar = document.getElementById('estadoChart').getContext('2d');
+  const estadoChart = new Chart(ctxBar, {
     type: 'bar',
     data: {
       labels: estados,
@@ -160,6 +166,37 @@
         y: {
           beginAtZero: true,
           precision: 0
+        }
+      }
+    }
+  });
+
+  // Gráfico circular (doughnut)
+  const ctxPie = document.getElementById('estadoPieChart').getContext('2d');
+  const estadoPieChart = new Chart(ctxPie, {
+    type: 'doughnut',
+    data: {
+      labels: estados,
+      datasets: [{
+        data: cantidades,
+        backgroundColor: [
+          'rgba(54, 162, 235, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)'
+        ],
+        borderColor: [
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: false,
+      plugins: {
+        legend: {
+          position: 'right'
         }
       }
     }
