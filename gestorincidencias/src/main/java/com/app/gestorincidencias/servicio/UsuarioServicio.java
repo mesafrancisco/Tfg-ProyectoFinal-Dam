@@ -23,4 +23,5 @@ public interface UsuarioServicio extends UserDetailsService{
     void asignarRol(String emailUsuario, String nombreRol);
 
     Object filtrarUsuarios(String email, String nombre, String rol);
+
 }

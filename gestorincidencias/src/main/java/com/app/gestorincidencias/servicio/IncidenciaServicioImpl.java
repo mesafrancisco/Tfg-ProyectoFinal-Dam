@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class IncidenciaServicioImpl implements IncidenciaServicio {
 
@@ -55,4 +57,10 @@ public class IncidenciaServicioImpl implements IncidenciaServicio {
         Pageable pageable = PageRequest.of(page, size);
         return repositorio.findByAsignadoA(email, pageable);
     }
+
+    @Override
+    public List<Incidencia> listarTodas() {
+        return repositorio.findAll();
+    }
+
 }

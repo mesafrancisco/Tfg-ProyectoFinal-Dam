@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.GrantedAuthority;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class IncidenciaControlador {
@@ -147,4 +150,25 @@ public class IncidenciaControlador {
 
         return "redirect:/incidencias";  // Redirigir a la lista de incidencias
     }
+
+    //Calendario
+    @GetMapping("/incidencias/calendario")
+    public String verCalendario() {
+        return "calendario";
+    }
+
+    @GetMapping("/api/incidencias/calendario")
+    @ResponseBody
+    public List<Map<String, Object>> obtenerIncidenciasParaCalendario() {
+        List<Incidencia> incidencias = servicio.listarTodas();
+        return incidencias.stream().map(i -> {
+            Map<String, Object> evento = new HashMap<>();
+            evento.put("title", i.getTitulo());
+            evento.put("start", i.getFechaCreacion()); // debe estar en formato ISO (ej: 2025-05-29)
+            evento.put("url", "/incidencias/editar/" + i.getId()); // opcional: clic lleva a editar
+            return evento;
+        }).collect(Collectors.toList());
+    }
+
+
 }
