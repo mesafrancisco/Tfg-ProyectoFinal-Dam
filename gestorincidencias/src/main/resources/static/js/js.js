@@ -54,4 +54,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+function toggleEditMode() {
+  // Selecciona todos los inputs con clase form-control dentro del formulario
+  const inputs = document.querySelectorAll('form input.form-control');
+
+  inputs.forEach(input => {
+    input.removeAttribute('readonly');  // Quita readonly para permitir edición
+  });
+
+  // Cambiar visibilidad de botones
+  document.getElementById('editarBtn').classList.add('d-none');
+  document.getElementById('guardarBtn').classList.remove('d-none');
+}
+
+
 
