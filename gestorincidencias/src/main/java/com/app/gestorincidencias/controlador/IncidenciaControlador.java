@@ -6,8 +6,6 @@ import com.app.gestorincidencias.servicio.IncidenciaServicio;
 import com.app.gestorincidencias.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.GrantedAuthority;
 
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,11 +37,26 @@ public class IncidenciaControlador {
                                     @RequestParam(value = "titulo", required = false) String titulo,
                                     @RequestParam(value = "estado", required = false) String estado,
                                     @RequestParam(value = "descripcion", required = false) String descripcion,
+                                    @RequestParam(value = "fechaInicio", required = false) String fechaInicioStr,
+                                    @RequestParam(value = "fechaFin", required = false) String fechaFinStr,
                                     @RequestParam(value = "page", defaultValue = "0") int page,
                                     @RequestParam(value = "size", defaultValue = "10") int size) {
 
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Incidencia> incidenciasPage;
+        LocalDate fechaInicio = null;
+        LocalDate fechaFin = null;
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE; // "yyyy-MM-dd"
+
+        try {
+            if (fechaInicioStr != null && !fechaInicioStr.isEmpty()) {
+                fechaInicio = LocalDate.parse(fechaInicioStr, formatter);
+            }
+            if (fechaFinStr != null && !fechaFinStr.isEmpty()) {
+                fechaFin = LocalDate.parse(fechaFinStr, formatter);
+            }
+        } catch (DateTimeParseException e) {
+            // Opcional: agregar mensaje de error en el modelo para mostrar en la vista
+            modelo.addAttribute("errorFecha", "Formato de fecha inválido. Use yyyy-MM-dd.");
+        }
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
@@ -48,18 +64,27 @@ public class IncidenciaControlador {
                 .map(GrantedAuthority::getAuthority)
                 .anyMatch(rol -> rol.equals("ROLE_ADMIN"));
 
-        if (palabraClave != null && !palabraClave.isEmpty()) {
-            incidenciasPage = isAdmin
-                    ? servicio.listarTodasLasIncidencias(palabraClave, page, size)
-                    : servicio.listarIncidenciasPorUsuario(email, page, size); // O puedes filtrar también aquí por palabra clave si implementas ese método
-        } else if (titulo != null || estado != null || descripcion != null) {
-            incidenciasPage = isAdmin
-                    ? servicio.buscarPorFiltros(titulo, estado, descripcion, page, size)
-                    : servicio.listarIncidenciasPorUsuario(email, page, size);
+        Page<Incidencia> incidenciasPage;
+
+        if ((titulo != null && !titulo.isEmpty()) ||
+                (estado != null && !estado.isEmpty()) ||
+                (descripcion != null && !descripcion.isEmpty()) ||
+                (fechaInicio != null) ||
+                (fechaFin != null) ||
+                (palabraClave != null && !palabraClave.isEmpty())) {
+
+            if (isAdmin) {
+                incidenciasPage = servicio.buscarPorFiltrosCompleto(titulo, estado, descripcion, fechaInicioStr, fechaFinStr, page, size);
+            } else {
+                incidenciasPage = servicio.listarIncidenciasPorUsuarioYFiltros(email, titulo, estado, descripcion, fechaInicio, fechaFin, palabraClave, page, size);
+            }
+
         } else {
-            incidenciasPage = isAdmin
-                    ? servicio.listarTodasLasIncidencias("", page, size)
-                    : servicio.listarIncidenciasPorUsuario(email, page, size);
+            if (isAdmin) {
+                incidenciasPage = servicio.listarTodasLasIncidencias("", page, size);
+            } else {
+                incidenciasPage = servicio.listarIncidenciasPorUsuario(email, page, size);
+            }
         }
 
         modelo.addAttribute("incidencias", incidenciasPage.getContent());
@@ -67,10 +92,13 @@ public class IncidenciaControlador {
         modelo.addAttribute("currentPage", page);
         modelo.addAttribute("totalPages", incidenciasPage.getTotalPages());
         modelo.addAttribute("size", size);
+        modelo.addAttribute("fechaInicio", fechaInicioStr);
+        modelo.addAttribute("fechaFin", fechaFinStr);
         modelo.addAttribute("usuarios", usuarioServicio.listarUsuarios());
 
         return "incidencias";
     }
+
 
     @GetMapping("/incidencias/nuevo")
     public String mostrarFormularioDeRegistrarIncidencia(Model modelo) {

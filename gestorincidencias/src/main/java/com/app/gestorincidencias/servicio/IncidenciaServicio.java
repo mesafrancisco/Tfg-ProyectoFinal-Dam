@@ -3,6 +3,7 @@ package com.app.gestorincidencias.servicio;
 import com.app.gestorincidencias.entidad.Incidencia;
 import org.springframework.data.domain.Page;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,12 @@ public interface IncidenciaServicio {
 
     Page<Incidencia> buscarPorFiltrosCompleto(String titulo, String estado, String descripcion, String fechaInicio, String fechaFin, int page, int size);
 
+    Page<Incidencia> listarIncidenciasPorUsuarioYFiltros(String email, String titulo, String estado, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, int page, int size);
+
     Map<String, Long> contarIncidenciasPorEstado(String titulo, String estado, String descripcion, String palabraClave);
+
+    Page<Incidencia> listarIncidenciasPorUsuarioYFiltros(String email, String titulo, String estado, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, String palabraClave, int page, int size);
+
+    Page<Incidencia> filtroPorTituloEstadoDescripcion(String titulo, String estado, String descripcion, String fechaInicio, String fechaFin, int page, int size);
 }
 

@@ -2,6 +2,7 @@ package com.app.gestorincidencias.servicio;
 
 import com.app.gestorincidencias.entidad.Incidencia;
 import com.app.gestorincidencias.repositorio.IncidenciaRepositorio;
+import jakarta.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -118,6 +120,63 @@ public class IncidenciaServicioImpl implements IncidenciaServicio {
         Specification<Incidencia> spec = IncidenciaSpecification.filtroCompleto(titulo, estado, descripcion, fechaInicio, fechaFin);
 
         return repositorio.findAll(spec, pageable);
+    }
+
+    @Override
+    public Page<Incidencia> listarIncidenciasPorUsuarioYFiltros(String email, String titulo, String estado, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        Specification<Incidencia> specUsuario = (root, query, cb) -> cb.equal(root.get("asignadoA"), email);
+
+        Specification<Incidencia> specFiltros = IncidenciaSpecification.filtroPorTituloEstadoDescripcion(titulo, estado, descripcion, fechaInicio,fechaFin );
+
+        Specification<Incidencia> specFinal = specUsuario.and(specFiltros);
+
+        return repositorio.findAll(specFinal, pageable);
+    }
+
+    @Override
+    public Page<Incidencia> listarIncidenciasPorUsuarioYFiltros(String email, String titulo, String estado, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, String palabraClave, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        Specification<Incidencia> specUsuario = (root, query, cb) -> cb.equal(root.get("asignadoA"), email);
+        Specification<Incidencia> specFiltros = IncidenciaSpecification.filtroPorTituloEstadoDescripcion(titulo, estado, descripcion, fechaInicio, fechaFin);
+        Specification<Incidencia> specPalabraClave = IncidenciaSpecification.filtroPorPalabraClave(palabraClave);
+
+        Specification<Incidencia> specFinal = specUsuario.and(specFiltros).and(specPalabraClave);
+
+        return repositorio.findAll(specFinal, pageable);
+    }
+
+    @Override
+    public Page<Incidencia> filtroPorTituloEstadoDescripcion(String titulo, String estado, String descripcion, String fechaInicio, String fechaFin, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+
+        Specification<Incidencia> spec = (root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (titulo != null && !titulo.isEmpty()) {
+                predicates.add(cb.like(cb.lower(root.get("titulo")), "%" + titulo.toLowerCase() + "%"));
+            }
+            if (estado != null && !estado.isEmpty()) {
+                predicates.add(cb.equal(root.get("estado"), estado));
+            }
+            if (descripcion != null && !descripcion.isEmpty()) {
+                predicates.add(cb.like(cb.lower(root.get("descripcion")), "%" + descripcion.toLowerCase() + "%"));
+            }
+            if (fechaInicio != null && !fechaInicio.isEmpty()) {
+                LocalDate inicio = LocalDate.parse(fechaInicio);
+                predicates.add(cb.greaterThanOrEqualTo(root.get("fechaCreacion"), inicio));
+            }
+            if (fechaFin != null && !fechaFin.isEmpty()) {
+                LocalDate fin = LocalDate.parse(fechaFin);
+                predicates.add(cb.lessThanOrEqualTo(root.get("fechaCreacion"), fin));
+            }
+
+            return cb.and(predicates.toArray(new Predicate[0]));
+        };
+
+        return repositorio.findAll(spec, pageable); // ← Aquí usamos la instancia
     }
 
 

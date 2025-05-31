@@ -32,16 +32,22 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="estado">Estado:</label>
-                            <select name="estado" id="estado" class="form-control bg-transparent" th:value="${estado}">
-                                <option value="Registrada">Registrada</option>
-                                <option value="En_Curso">En Curso</option>
-                                <option value="Cerrada">Cerrada</option>
+                            <select name="estado" id="estado" class="form-control bg-transparent">
+                                <option value="" th:selected="${estado == null or estado == ''}">-- Todos --</option>
+                                <option value="Registrada" th:selected="${estado == 'Registrada'}">Registrada</option>
+                                <option value="En_Curso" th:selected="${estado == 'En_Curso'}">En Curso</option>
+                                <option value="Cerrada" th:selected="${estado == 'Cerrada'}">Cerrada</option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="fecha">Fecha:</label>
-                            <input type="date" name="fecha" id="fecha" class="form-control bg-transparent" th:value="${fecha}">
+                            <label for="fechaInicio">Fecha Inicio:</label>
+                            <input type="date" name="fechaInicio" id="fechaInicio" class="form-control bg-transparent" th:value="${fechaInicio}">
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="fechaFin">Fecha Fin:</label>
+                            <input type="date" name="fechaFin" id="fechaFin" class="form-control bg-transparent" th:value="${fechaFin}">
+                        </div>
+
                         <div class="col-12 d-flex justify-content-start">
                             <input type="submit" class="btn btn-primary mb-2" value="Buscar">
                             <input type="button" class="btn btn-secondary mb-2 ml-2" value="Limpiar" onclick="limpiarCampos()">
@@ -66,7 +72,7 @@
                         <th>Título</th>
                         <th>Descripción</th>
                         <th>Estado</th>
-                        <th>Fecha</th>
+                        <th>Fecha Inicio</th>
                         <th>Fecha Resolución</th>
                         <th>Asignado a:</th>
                         <th>Asignacion</th>
