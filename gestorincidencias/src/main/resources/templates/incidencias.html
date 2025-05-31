@@ -75,8 +75,8 @@
                         <th>Fecha Inicio</th>
                         <th>Fecha Resolución</th>
                         <th>Asignado a:</th>
-                        <th>Asignacion</th>
-                        <th style="width: 200px;">Acciones</th>
+                        <th th:if="${esAdmin}">Asignacion</th>
+                        <th th:if="${esAdmin}" style="width: 200px;">Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -87,20 +87,19 @@
                         <td th:text="${incidencia.fechaCreacion}">Creación</td>
                         <td th:text="${incidencia.fechaResolucion}">Resolución</td>
                         <td th:text="${incidencia.asignadoA}">Asignado</td>
-                        <td class="text-center">
-                            <!-- Formulario para asignar la incidencia -->
+
+                        <td th:if="${esAdmin}" class="text-center">
                             <form th:action="@{/incidencias/asignar/{id}(id=${incidencia.id})}" method="post">
                                 <input type="hidden" name="incidenciaId" th:value="${incidencia.id}" />
-                                <!-- Campo select para seleccionar el correo electrónico de usuario -->
                                 <select name="correoUsuario" required>
                                     <option value="" disabled selected>Correo electronico</option>
-                                    <!-- Itera sobre la lista de usuarios y crea una opción para cada uno -->
                                     <option th:each="usuario : ${usuarios}" th:value="${usuario.email}" th:text="${usuario.email}"></option>
                                 </select>
                                 <button type="submit" class="btn btn-primary">Asignar</button>
                             </form>
                         </td>
-                        <td class="text-center">
+
+                        <td th:if="${esAdmin}" class="text-center">
                             <a th:href="@{/incidencias/editar/{id}(id=${incidencia.id})}" class="btn btn-info">Editar</a>
                             <a th:href="@{/incidencias/{id}(id=${incidencia.id})}" class="btn btn-danger">Eliminar</a>
                         </td>
