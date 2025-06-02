@@ -13,12 +13,10 @@
 <body>
 <div th:replace="~{fragments/menubueno :: menu}"></div>
 
-<div class="content-container">
-  <div class="content">
-    <div class="container-fluid mt-4">
-      <div class="row justify-content-center">
-        <div class="col-12 card p-4">
-          <h2 class="text-center mb-4">Crear Cliente</h2>
+<div class="container-fluid mt-4">
+  <div class="row justify-content-start" style="margin-left: 500px;">
+        <div class="col-10 card p-4">
+          <h2 class="text-center mb-4">Detalle Cliente</h2>
           <!-- Formulario para editar los detalles del cliente -->
           <form th:action="@{'/clientes/' + ${cliente.id}}" th:object="${cliente}" method="post">
             <input type="hidden" th:field="*{id}"> <!-- Asegurar que el ID se envía correctamente -->
@@ -29,22 +27,23 @@
                 <input type="text" th:field="*{nombre}" class="form-control" readonly>
               </div>
 
-              <div class="form-group col-md-3">
+              <div class="form-group col-md-4">
                 <label>Apellidos:</label>
                 <input type="text" th:field="*{apellidos}" class="form-control" readonly>
               </div>
+              <br>
 
-              <div class="form-group col-md-2">
+              <div class="form-group col-md-3">
                 <label>DNI:</label>
                 <input type="text" th:field="*{dni}" class="form-control" readonly>
               </div>
 
-              <div class="form-group col-md-2">
+              <div class="form-group col-md-3">
                 <label>Teléfono:</label>
                 <input type="text" th:field="*{telefono}" class="form-control" readonly>
               </div>
 
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label>Email:</label>
                 <input type="email" th:field="*{email}" class="form-control" readonly>
               </div>
@@ -57,8 +56,7 @@
             </div>
           </form>
         </div>
-      </div>
-    </div>
+
   </div>
 
   <script src="/js/js.js"></script>

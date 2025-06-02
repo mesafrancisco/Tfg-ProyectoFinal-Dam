@@ -13,13 +13,10 @@
 <body>
 <div th:replace="~{fragments/menubueno :: menu}"></div>
 
-<div class="content-container">
-  <div class="content">
     <div class="container-fluid mt-4">
-      <div class="row justify-content-center">
-        <div class="col-12 card p-4">
+      <div class="row justify-content-start" style="margin-left: 500px;">
+        <div class=" col-8 card p-4">
           <h2 class="text-center mb-4">Crear Cliente</h2>
-
           <form th:action="@{/clientes}" th:object="${cliente}" method="post">
             <div class="row">
               <div class="form-group col-md-6">
@@ -55,8 +52,6 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
 
 <script src="/js/js.js"></script>
 </body>
