@@ -72,12 +72,11 @@
                         <th>Título</th>
                         <th>Descripción</th>
                         <th>Estado</th>
-
                         <th>Fecha Inicio</th>
                         <th>Fecha Resolución</th>
                         <th>Asignado a:</th>
+                        <th th:if="${esAdmin}">Asignacion</th>
                         <th th:if="${esAdmin}" style="width: 200px;">Acciones</th>
-                        <th th:if="${!esAdmin}">Editar Estado</th>
                     </tr>
                     </thead>
                     <tbody>
