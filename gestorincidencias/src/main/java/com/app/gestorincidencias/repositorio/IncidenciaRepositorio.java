@@ -43,4 +43,5 @@ public interface IncidenciaRepositorio extends JpaRepository<Incidencia, Long>, 
     List<Object[]> contarPorEstado(@Param("titulo") String titulo, @Param("estado") String estado,
                                    @Param("descripcion") String descripcion, @Param("palabraClave") String palabraClave);
 
+    List<Incidencia> findByClienteId(Long clienteId);
 }

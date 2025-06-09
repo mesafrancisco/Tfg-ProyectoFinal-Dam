@@ -283,46 +283,6 @@ color:rgb(39, 35, 65)
     color: #a8c1ff;
 }
 
-/* Responsive Styles (sin cambios) */
-@media screen and (max-width: 1024px) {
-    .sidebar {
-        width: 200px;
-    }
-    .content {
-        margin-left: 200px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-    }
-    .sidebar {
-        transform: translateX(-100%);
-        width: 100%;
-    }
-    .sidebar.active {
-        transform: translateX(0);
-    }
-    .content {
-        margin-left: 0;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .navbar h1 {
-        font-size: 1.5rem;
-    }
-    .content h2 {
-        font-size: 1.5rem;
-    }
-    .table th, .table td {
-        padding: 10px;
-        font-size: 0.9rem;
-    }
-}
-
 /* FullCalendar dark mode tweaks */
 .dark-mode .fc {
     background-color: #1b2e59;
@@ -365,3 +325,5 @@ color:rgb(39, 35, 65)
     background-color: #c62828 !important; /* rojo oscuro (sin cambio) */
     color: #fff !important;
 }
+
+

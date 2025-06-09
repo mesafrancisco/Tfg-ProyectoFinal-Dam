@@ -47,7 +47,7 @@ public class IncidenciaServicioImpl implements IncidenciaServicio {
 
     @Override
     public Incidencia obtenerIncidenciaPorId(Long id) {
-        return repositorio.findById(id).get();
+        return repositorio.findById(id).orElse(null);
     }
 
     @Override
@@ -176,8 +176,17 @@ public class IncidenciaServicioImpl implements IncidenciaServicio {
             return cb.and(predicates.toArray(new Predicate[0]));
         };
 
-        return repositorio.findAll(spec, pageable); // ← Aquí usamos la instancia
+        return repositorio.findAll(spec, pageable);
     }
 
+    @Override
+    public List<Incidencia> listarPorClienteId(Long clienteId) {
+        return repositorio.findByClienteId(clienteId);
+    }
+
+    @Override
+    public List<Incidencia> obtenerIncidenciasPorClienteId(Long clienteId) {
+        return repositorio.findByClienteId(clienteId);
+    }
 
 }

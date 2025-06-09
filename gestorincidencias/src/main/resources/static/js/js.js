@@ -55,17 +55,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function toggleEditMode() {
-  // Selecciona todos los inputs con clase form-control dentro del formulario
   const inputs = document.querySelectorAll('form input.form-control');
 
+  const isReadonly = inputs[0].hasAttribute('readonly'); // Asumimos que todos están igual
+
   inputs.forEach(input => {
-    input.removeAttribute('readonly');  // Quita readonly para permitir edición
+    if (isReadonly) {
+      input.removeAttribute('readonly');  // Activar edición
+    } else {
+      input.setAttribute('readonly', 'readonly'); // Volver a solo lectura
+    }
   });
 
-  // Cambiar visibilidad de botones
-  document.getElementById('editarBtn').classList.add('d-none');
-  document.getElementById('guardarBtn').classList.remove('d-none');
+  // Alternar visibilidad de botones
+  document.getElementById('editarBtn').classList.toggle('d-none');
+  document.getElementById('guardarBtn').classList.toggle('d-none');
 }
+
 
 
 

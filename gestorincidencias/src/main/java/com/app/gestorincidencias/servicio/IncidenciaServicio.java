@@ -28,5 +28,9 @@ public interface IncidenciaServicio {
     Page<Incidencia> listarIncidenciasPorUsuarioYFiltros(String email, String titulo, String estado, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, String palabraClave, int page, int size);
 
     Page<Incidencia> filtroPorTituloEstadoDescripcion(String titulo, String estado, String descripcion, String fechaInicio, String fechaFin, int page, int size);
+
+    List<Incidencia> listarPorClienteId(Long clienteId);
+
+    List<Incidencia> obtenerIncidenciasPorClienteId(Long id);
 }
 

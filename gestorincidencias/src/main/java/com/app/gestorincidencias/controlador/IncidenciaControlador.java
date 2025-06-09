@@ -2,6 +2,7 @@ package com.app.gestorincidencias.controlador;
 
 import com.app.gestorincidencias.entidad.Incidencia;
 import com.app.gestorincidencias.entidad.Usuario;
+import com.app.gestorincidencias.servicio.ClienteServicio;
 import com.app.gestorincidencias.servicio.IncidenciaServicio;
 import com.app.gestorincidencias.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,11 @@ public class IncidenciaControlador {
     private IncidenciaServicio servicio;
 
     @Autowired
-    private UsuarioServicio usuarioServicio;  // Inyectamos el UsuarioServicio
+    private UsuarioServicio usuarioServicio;
+
+    @Autowired
+    private ClienteServicio clienteServicio;
+
 
     @GetMapping({ "/incidencias", "/" })
     public String listarIncidencias(Model modelo,
@@ -112,9 +117,9 @@ public class IncidenciaControlador {
     public String mostrarFormularioDeRegistrarIncidencia(Model modelo) {
         Incidencia incidencia = new Incidencia();
         modelo.addAttribute("incidencia", incidencia);
-        return "crear_incidencia"; // nombre de la plantilla que vamos a mostrar
+        modelo.addAttribute("clientes", clienteServicio.listarClientes(0, 10));  // <-- Añadir lista clientes
+        return "crear_incidencia";
     }
-
     @PostMapping("/incidencias")
     public String guardarIncidencia(@ModelAttribute("incidencia") Incidencia incidencia) {
         servicio.guardarIncidencia(incidencia);
@@ -123,9 +128,12 @@ public class IncidenciaControlador {
 
     @GetMapping("/incidencias/editar/{id}")
     public String mostrarFormularioDeEditar(@PathVariable Long id, Model modelo) {
-        modelo.addAttribute("incidencia", servicio.obtenerIncidenciaPorId(id));
+        Incidencia incidencia = servicio.obtenerIncidenciaPorId(id);
+        modelo.addAttribute("incidencia", incidencia);
+        modelo.addAttribute("clientes", clienteServicio.listarClientes(0, 10));  // <-- Pasa página y tamaño
         return "editar_incidencia";
     }
+
 
     @PostMapping("/incidencias/{id}")
     public String actualizarIncidencia(@PathVariable Long id, @ModelAttribute("incidencia") Incidencia incidencia, Model modelo) {
@@ -138,6 +146,7 @@ public class IncidenciaControlador {
         incidenciaExistente.setPrioridad(incidencia.getPrioridad());
         incidenciaExistente.setFechaCreacion(incidencia.getFechaCreacion());
         incidenciaExistente.setFechaResolucion(incidencia.getFechaResolucion());
+        incidenciaExistente.setCliente(incidencia.getCliente());
         servicio.actualizarIncidencia(incidenciaExistente);
         return "redirect:/incidencias";
     }

@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/css/stylemenu.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div th:replace="~{fragments/menubueno :: menu}"></div>
@@ -105,9 +106,14 @@
                         </td>
 
                         <td th:if="${esAdmin}" class="text-center">
-                            <a th:href="@{/incidencias/editar/{id}(id=${incidencia.id})}" class="btn btn-info">Editar</a>
-                            <a th:href="@{/incidencias/{id}(id=${incidencia.id})}" class="btn btn-danger">Eliminar</a>
+                            <a th:href="@{/incidencias/editar/{id}(id=${incidencia.id})}" class="btn btn-info" title="Editar">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a th:href="@{/incidencias/{id}(id=${incidencia.id})}" class="btn btn-danger" title="Eliminar">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
                         </td>
+
                         <td th:if="${!esAdmin}">
                             <form th:action="@{/incidencias/estado/{id}(id=${incidencia.id})}" method="post">
                                 <select name="nuevoEstado" class="form-control mb-2" required>

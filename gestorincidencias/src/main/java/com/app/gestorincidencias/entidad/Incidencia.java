@@ -20,7 +20,20 @@ public class Incidencia {
     private LocalDateTime fechaResolucion;
     private String asignadoA; // Puede ser un ID de usuario o nombre
     private String prioridad; // Ejemplo: "alta", "media", "baja"
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
     // Getters y Setters
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     public Long getId() {
         return id;
     }

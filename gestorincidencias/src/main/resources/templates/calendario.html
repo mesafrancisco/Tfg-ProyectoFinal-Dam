@@ -59,6 +59,13 @@
       var calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth',
           locale: 'es',
+           buttonText: {
+            today:    'Hoy',
+            month:    'Mes',
+            week:     'Semana',
+            day:      'Día',
+            list:     'Lista'
+          },
           height: 700,
           headerToolbar: {
             left: 'prev,next today',

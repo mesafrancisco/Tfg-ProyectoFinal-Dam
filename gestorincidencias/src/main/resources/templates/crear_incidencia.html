@@ -20,6 +20,16 @@
             <div class="card-body">
                 <form th:action="@{/incidencias}" th:object="${incidencia}" method="post">
                     <div class="form-group">
+                        <label>Cliente:</label>
+                        <select name="cliente.id" th:field="*{cliente.id}" class="form-control" required>
+                            <option value="" disabled selected>Seleccione un cliente</option>
+                            <option th:each="cliente : ${clientes}"
+                                    th:value="${cliente.id}"
+                                    th:text="${cliente.nombre} + ' ' + ${cliente.apellidos}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label>Título: </label>
                         <input type="text" name="titulo" th:field="*{titulo}" class="form-control" placeholder="Ponga el título" required>
                     </div>

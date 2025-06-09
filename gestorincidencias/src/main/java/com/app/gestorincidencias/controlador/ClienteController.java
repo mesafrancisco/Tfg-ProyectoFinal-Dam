@@ -1,18 +1,25 @@
 package com.app.gestorincidencias.controlador;
 
 import com.app.gestorincidencias.entidad.Cliente;
+import com.app.gestorincidencias.entidad.Incidencia;
 import com.app.gestorincidencias.servicio.ClienteServicio;
+import com.app.gestorincidencias.servicio.IncidenciaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class ClienteController {
 
     @Autowired
     private ClienteServicio clienteServicio;
+
+    @Autowired
+    private IncidenciaServicio incidenciaServicio;
 
     // Listar clientes con filtros y paginación
     @GetMapping({"/clientes", "/"})
@@ -70,9 +77,16 @@ public class ClienteController {
     @GetMapping("/clientes/editar/{id}")
     public String mostrarFormularioEditarCliente(@PathVariable Long id, Model modelo) {
         Cliente cliente = clienteServicio.obtenerClientePorId(id);
+
+        // Obtener las incidencias del cliente
+        List<Incidencia> incidencias = incidenciaServicio.obtenerIncidenciasPorClienteId(id);
+
         modelo.addAttribute("cliente", cliente);
+        modelo.addAttribute("incidencias", incidencias); // Añadir incidencias al modelo
+
         return "editar_cliente";
     }
+
 
     // Actualizar cliente
     @PostMapping("/clientes/{id}")
@@ -80,9 +94,10 @@ public class ClienteController {
         Cliente clienteExistente = clienteServicio.obtenerClientePorId(id);
         clienteExistente.setId(id);
         clienteExistente.setNombre(cliente.getNombre());
+        clienteExistente.setApellidos(cliente.getApellidos());
+        clienteExistente.setDni(cliente.getDni());
         clienteExistente.setEmail(cliente.getEmail());
         clienteExistente.setTelefono(cliente.getTelefono());
-        // Añade más campos si tienes en tu entidad Cliente
         clienteServicio.actualizarCliente(clienteExistente);
         return "redirect:/clientes";
     }
@@ -101,6 +116,18 @@ public class ClienteController {
             return "redirect:/clientes";
         }
         modelo.addAttribute("cliente", cliente);
+
+        List<Incidencia> incidencias = incidenciaServicio.listarPorClienteId(id);
+        modelo.addAttribute("incidencias", incidencias);
+
         return "detalle_cliente";
     }
+
+    @GetMapping("/clientes/{clienteId}/incidencias")
+    public String listarIncidenciasDeCliente(@PathVariable Long clienteId, Model modelo) {
+        List<Incidencia> incidencias = incidenciaServicio.listarPorClienteId(clienteId);
+        modelo.addAttribute("incidencias", incidencias);
+        return "incidencias_cliente"; // nombre de la vista .html/.jsp
+    }
+
 }

@@ -16,4 +16,5 @@ public interface ClienteServicio {
     Cliente actualizarCliente(Cliente cliente);
 
     Cliente eliminarCliente(Long id);
+
 }
