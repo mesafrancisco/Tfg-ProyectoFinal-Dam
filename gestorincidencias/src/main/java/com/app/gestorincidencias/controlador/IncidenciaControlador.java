@@ -99,7 +99,15 @@ public class IncidenciaControlador {
         return "incidencias";
     }
 
-
+    @PostMapping("/incidencias/estado/{id}")
+    public String cambiarEstado(@PathVariable Long id, @RequestParam("nuevoEstado") String nuevoEstado) {
+        Incidencia incidencia = servicio.obtenerIncidenciaPorId(id);
+        if (incidencia != null) {
+            incidencia.setEstado(nuevoEstado);
+            servicio.actualizarIncidencia(incidencia);
+        }
+        return "redirect:/incidencias";
+    }
     @GetMapping("/incidencias/nuevo")
     public String mostrarFormularioDeRegistrarIncidencia(Model modelo) {
         Incidencia incidencia = new Incidencia();

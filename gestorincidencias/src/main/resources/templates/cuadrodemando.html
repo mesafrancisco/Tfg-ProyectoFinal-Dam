@@ -89,6 +89,7 @@
             <th>Estado</th>
             <th>Fecha</th>
             <th>Fecha Resolución</th>
+            <th>Asignado</th>
           </tr>
           </thead>
           <tbody>
@@ -96,16 +97,57 @@
             <td th:text="${incidencia.titulo}">Título</td>
             <td th:text="${incidencia.descripcion}">Descripción</td>
             <td th:text="${incidencia.estado}">Estado</td>
-            <td th:text="${incidencia.fechaCreacion}">Creación</td>
-            <td th:text="${incidencia.fechaResolucion}">Resolución</td>
+            <td th:text="${incidencia.fechaCreacion != null} ? ${#temporals.format(incidencia.fechaCreacion, 'dd/MM/yyyy HH:mm')} : 'Sin fecha'">Creación</td>
+            <td th:text="${incidencia.fechaResolucion != null} ? ${#temporals.format(incidencia.fechaResolucion, 'dd/MM/yyyy HH:mm')} : 'Sin fecha'">Resolución</td>
+            <td th:text="${incidencia.asignadoA}">Asignado</td>
           </tr>
           </tbody>
         </table>
-
         <!-- Paginación -->
         <div class="row">
           <div class="col-12">
             <ul class="pagination justify-content-center">
+              <!-- Botón de Primera página -->
+              <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/cuadrodemando(page=0, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
+                  <i class="fas fa-angle-double-left"></i> <!-- Flecha doble para ir al inicio -->
+                </a>
+              </li>
+
+              <!-- Botón de página anterior -->
+              <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/cuadrodemando(page=${currentPage - 1}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
+                  <i class="fas fa-angle-left"></i> <!-- Flecha para atrás -->
+                </a>
+              </li>
+
+              <!-- Botones de páginas -->
+              <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                  th:classappend="${i == currentPage} ? 'active'">
+                <a class="page-link" href="#"
+                   th:href="@{/cuadrodemando(page=${i}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}"
+                   th:text="${i + 1}"></a>
+              </li>
+
+              <!-- Botón de página siguiente -->
+              <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/cuadrodemando(page=${currentPage + 1}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
+                  <i class="fas fa-angle-right"></i> <!-- Flecha para adelante -->
+                </a>
+              </li>
+
+              <!-- Botón de última página -->
+              <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/cuadrodemando(page=${totalPages - 1}, size=${size}, palabraClave=${palabraClave}, titulo=${titulo}, estado=${estado}, descripcion=${descripcion})}">
+                  <i class="fas fa-angle-double-right"></i> <!-- Flecha doble para ir al final -->
+                </a>
+              </li>
+            </ul>
+          </div>
               <!-- Paginación aquí -->
             </ul>
           </div>

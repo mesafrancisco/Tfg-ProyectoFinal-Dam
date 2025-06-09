@@ -44,7 +44,7 @@
                             <input type="date" name="fechaInicio" id="fechaInicio" class="form-control bg-transparent" th:value="${fechaInicio}">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="fechaFin">Fecha Fin:</label>
+                            <label for="fechaFin">Fecha Resolución:</label>
                             <input type="date" name="fechaFin" id="fechaFin" class="form-control bg-transparent" th:value="${fechaFin}">
                         </div>
 
@@ -72,11 +72,13 @@
                         <th>Título</th>
                         <th>Descripción</th>
                         <th>Estado</th>
+
                         <th>Fecha Inicio</th>
                         <th>Fecha Resolución</th>
                         <th>Asignado a:</th>
                         <th th:if="${esAdmin}">Asignacion</th>
                         <th th:if="${esAdmin}" style="width: 200px;">Acciones</th>
+                        <th th:if="${!esAdmin}">Editar Estado</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -84,8 +86,9 @@
                         <td th:text="${incidencia.titulo}">Título</td>
                         <td th:text="${incidencia.descripcion}">Descripción</td>
                         <td th:text="${incidencia.estado}">Estado</td>
-                        <td th:text="${incidencia.fechaCreacion}">Creación</td>
-                        <td th:text="${incidencia.fechaResolucion}">Resolución</td>
+
+                        <td th:text="${incidencia.fechaCreacion != null} ? ${#temporals.format(incidencia.fechaCreacion, 'dd/MM/yyyy HH:mm')} : 'Sin fecha'">Creación</td>
+                        <td th:text="${incidencia.fechaResolucion != null} ? ${#temporals.format(incidencia.fechaResolucion, 'dd/MM/yyyy HH:mm')} : 'Sin fecha'">Resolución</td>
                         <td th:text="${incidencia.asignadoA}">Asignado</td>
 
                         <td th:if="${esAdmin}" class="text-center">
@@ -102,6 +105,16 @@
                         <td th:if="${esAdmin}" class="text-center">
                             <a th:href="@{/incidencias/editar/{id}(id=${incidencia.id})}" class="btn btn-info">Editar</a>
                             <a th:href="@{/incidencias/{id}(id=${incidencia.id})}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                        <td th:if="${!esAdmin}">
+                            <form th:action="@{/incidencias/estado/{id}(id=${incidencia.id})}" method="post">
+                                <select name="nuevoEstado" class="form-control mb-2" required>
+                                    <option value="Registrada" th:selected="${incidencia.estado == 'Registrada'}">Registrada</option>
+                                    <option value="En_Curso" th:selected="${incidencia.estado == 'En_Curso'}">En Curso</option>
+                                    <option value="Cerrada" th:selected="${incidencia.estado == 'Cerrada'}">Cerrada</option>
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-primary">Guardar</button>
+                            </form>
                         </td>
                     </tr>
                     </tbody>
