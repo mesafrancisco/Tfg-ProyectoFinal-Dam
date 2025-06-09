@@ -85,8 +85,10 @@
                     <tr th:each="incidencia : ${incidencias}">
                         <td th:text="${incidencia.titulo}">Título</td>
                         <td th:text="${incidencia.descripcion}">Descripción</td>
-                        <td th:text="${incidencia.estado}">Estado</td>
-
+                        <td th:text="${incidencia.estado}"
+                            th:classappend=" ${incidencia.estado == 'Cerrada'} ? 'bg-success text-white' :
+                                            (${incidencia.estado == 'En_Curso'} ? 'bg-warning text-white' : '')">
+                        </td>
                         <td th:text="${incidencia.fechaCreacion != null} ? ${#temporals.format(incidencia.fechaCreacion, 'dd/MM/yyyy HH:mm')} : 'Sin fecha'">Creación</td>
                         <td th:text="${incidencia.fechaResolucion != null} ? ${#temporals.format(incidencia.fechaResolucion, 'dd/MM/yyyy HH:mm')} : 'Sin fecha'">Resolución</td>
                         <td th:text="${incidencia.asignadoA}">Asignado</td>
