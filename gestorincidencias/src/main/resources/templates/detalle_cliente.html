@@ -73,7 +73,7 @@
               <tr th:each="incidencia : ${incidencias}">
                 <td th:text="${incidencia.id}"></td>
                 <td th:text="${incidencia.descripcion}"></td>
-                <td th:text="${incidencia.fechaCreacion}"></td>
+                <td th:text="${incidencia.fechaCreacion != null} ? ${#temporals.format(incidencia.fechaCreacion, 'dd/MM/yyyy HH:mm')} : 'Sin fecha'"></td>
                 <td th:text="${incidencia.estado}"></td>
                 <td>
                   <a th:href="@{'/incidencias/editar/' + ${incidencia.id}}"  class="btn btn-info" title="Editar">
